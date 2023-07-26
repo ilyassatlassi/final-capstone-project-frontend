@@ -36,7 +36,7 @@ const register = createAsyncThunk(
       }
       return thunkAPI.rejectWithValue(resp.data);
     } catch (err) {
-      return thunkAPI.rejectWithValue(err.response.data.errors.full_messages[0]);
+      return thunkAPI.rejectWithValue(err.response.data.errors);
     }
   },
 );
@@ -80,7 +80,6 @@ const authenticate = createAsyncThunk(
       let auth = localStorage.getItem('auth');
       auth = JSON.parse(auth);
 
-      localStorage.setItem('auth', JSON.stringify(auth));
       const resp = await axios.get(
         `${api.CURRENT_USER_ENDPOINT}`,
         {
