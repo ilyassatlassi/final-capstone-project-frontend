@@ -101,6 +101,7 @@ function CreateDoctor() {
             onChange={handleInputChange}
           />
         </label>
+
         <label className="mb-4 h5 d-flex flex-column">
           Picture:
           <input
@@ -112,8 +113,9 @@ function CreateDoctor() {
             onChange={handleInputChange}
           />
         </label>
+
         <label className="mb-2 h5 d-flex flex-column">
-		ConsultationFee:
+          ConsultationFee:
           <input
             placeholder="Enter price here"
             className="mt-2 add-input"
@@ -123,6 +125,7 @@ function CreateDoctor() {
             onChange={handleInputChange}
           />
         </label>
+
         <label className="mb-2 h5 d-flex flex-column">
           Specialization:
           <input
@@ -134,7 +137,7 @@ function CreateDoctor() {
           />
         </label>
 
-		<label className="mb-2 h5 d-flex flex-column">
+        <label className="mb-2 h5 d-flex flex-column">
           Hospital:
           <input
             className="mt-2 add-input"
@@ -144,7 +147,14 @@ function CreateDoctor() {
             onChange={handleInputChange}
           />
         </label>
-		<label className="mb-4 h5 d-flex flex-column">
+        <label className="mb-4 h5 d-flex flex-column">
+          Availability:
+          <button className="mt-2 add-input" onClick={handleAvailabilityClick}>
+            Set Availability to True
+          </button>
+        </label>
+
+        <label className="mb-4 h5 d-flex flex-column">
           Facebook:
           <input
             placeholder="Enter facebook URL here"
@@ -155,7 +165,8 @@ function CreateDoctor() {
             onChange={handleInputChange}
           />
         </label>
-		<label className="mb-4 h5 d-flex flex-column">
+
+        <label className="mb-4 h5 d-flex flex-column">
           Instagram:
           <input
             placeholder="Enter instagram URL here"
@@ -166,7 +177,8 @@ function CreateDoctor() {
             onChange={handleInputChange}
           />
         </label>
-		<label className="mb-4 h5 d-flex flex-column">
+
+        <label className="mb-4 h5 d-flex flex-column">
           Twitter:
           <input
             placeholder="Enter twitter URL here"
@@ -177,8 +189,17 @@ function CreateDoctor() {
             onChange={handleInputChange}
           />
         </label>
+
         <input className="mt-4 button-b-form" type="submit" value="Submit" />
       </form>
+      {successMessage && (
+        <p className="mt-2 alert alert-success text-center">{successMessage}</p>
+      )}
+      {errorMessage && (
+        <p className="mt-2 alert alert-danger text-center">
+          Please fill out all fields
+        </p>
+      )}
     </div>
   );
 }
