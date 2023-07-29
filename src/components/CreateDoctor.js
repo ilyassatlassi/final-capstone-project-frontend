@@ -6,6 +6,8 @@ import { fetchDoctors, addDoctor } from '../redux/slices/doctors'
 function CreateDoctor() {
     const dispatch = useDispatch();
 	const { doctor } = useSelector((state) => state.doctors);
+	const [successMessage, setSuccessMessage] = useState('');
+	const [errorMessage, setErrorMessage] = useState('');
 	const [doctorData, setDoctorData] = useState({
 		image: '',
 		name: '',
@@ -18,6 +20,8 @@ function CreateDoctor() {
         twitter:'',
         instagram:'',
 	});
+
+	
 
     const handleInputChange = (e) => {
 		setDoctorData({
