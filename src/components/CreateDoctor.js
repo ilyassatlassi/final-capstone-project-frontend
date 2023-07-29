@@ -19,6 +19,13 @@ function CreateDoctor() {
         instagram:'',
 	});
 
+    const handleInputChange = (e) => {
+		setDoctorData({
+			...doctorData,
+			[e.target.name]: e.target.value,
+		});
+	};
+
   return (
     <div className='"container-b-form container"'>
         <form className='d-flex flex-column justify-content-center align-items-center'>
@@ -29,6 +36,7 @@ function CreateDoctor() {
 						type="text"
 						name="name"
 						value={doctorData.name}
+						onChange={handleInputChange}
 					/>
 				</label>
         </form>
