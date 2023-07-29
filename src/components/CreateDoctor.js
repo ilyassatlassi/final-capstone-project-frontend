@@ -20,7 +20,19 @@ function CreateDoctor() {
 	});
 
   return (
-    <div>CreateDoctor</div>
+    <div className='"container-b-form container"'>
+        <form className='d-flex flex-column justify-content-center align-items-center'>
+        <label className="mb-4 h5 d-flex flex-column">
+					Name:
+					<input
+						className="mt-2 add-input"
+						type="text"
+						name="name"
+						value={doctorData.name}
+					/>
+				</label>
+        </form>
+    </div>
   )
 }
 
