@@ -117,7 +117,7 @@ function CreateDoctor() {
           />
         </label>
         <label className="mb-2 h5 d-flex flex-column">
-          specialization:
+          Specialization:
           <input
             className="mt-2 add-input"
             type="text"
@@ -126,13 +126,47 @@ function CreateDoctor() {
             onChange={handleInputChange}
           />
         </label>
+
 		<label className="mb-2 h5 d-flex flex-column">
-          specialization:
+          Hospital:
           <input
             className="mt-2 add-input"
             type="text"
             name="specialization"
-            value={doctorData.specialization}
+            value={doctorData.hospital}
+            onChange={handleInputChange}
+          />
+        </label>
+		<label className="mb-4 h5 d-flex flex-column">
+          Facebook:
+          <input
+            placeholder="Enter facebook URL here"
+            className="mt-2 add-input"
+            type="text"
+            name="facebook"
+            value={doctorData.facebook}
+            onChange={handleInputChange}
+          />
+        </label>
+		<label className="mb-4 h5 d-flex flex-column">
+          Instagram:
+          <input
+            placeholder="Enter instagram URL here"
+            className="mt-2 add-input"
+            type="text"
+            name="instagram"
+            value={doctorData.instagram}
+            onChange={handleInputChange}
+          />
+        </label>
+		<label className="mb-4 h5 d-flex flex-column">
+          Twitter:
+          <input
+            placeholder="Enter twitter URL here"
+            className="mt-2 add-input"
+            type="text"
+            name="twitter"
+            value={doctorData.twitter}
             onChange={handleInputChange}
           />
         </label>
