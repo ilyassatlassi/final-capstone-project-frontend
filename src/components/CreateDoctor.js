@@ -13,7 +13,7 @@ function CreateDoctor() {
     specialization: "",
     consultationFee: "",
     hospital: "",
-    availability: "",
+    availability: false,
     description: "",
     facebook: "",
     twitter: "",
@@ -65,6 +65,13 @@ function CreateDoctor() {
     setDoctorData({
       ...doctorData,
       [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleAvailabilityClick = () => {
+    setDoctorData({
+      ...doctorData,
+      availability: true,
     });
   };
 
