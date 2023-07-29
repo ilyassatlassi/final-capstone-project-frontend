@@ -21,7 +21,46 @@ function CreateDoctor() {
         instagram:'',
 	});
 
-	
+	const handleCreateNewDoctor = async (e) => {
+		e.preventDefault();
+
+		// Check if any field is empty
+
+		const isAnyFieldEmpty = Object.values(doctorData).some(
+			(value) => value === '',
+		);
+
+		// Display error message to fill out the empty field
+
+		if (isAnyFieldEmpty) {
+			setErrorMessage('Please fill out all fields');
+			setTimeout(() => {
+				setErrorMessage('');
+			}, 3000);
+			return;
+		}
+		await dispatch(addDoctor(doctorData));
+		dispatch(fetchDoctors()); // Fetch doctor after new doctor creation
+		setDoctorData({
+			image: '',
+			name: '',
+			specialization: '',
+			consultationFee: '',
+			hospital: '',
+			availability: '',
+			description: '',
+			facebook: '',
+			twitter:'',
+			instagram:'',
+		});
+		setSuccessMessage('Doctor created successfully');
+
+		// Clear success message after a delay (e.g., 3 seconds)
+
+		setTimeout(() => {
+			setSuccessMessage('');
+		}, 3000);
+	};
 
     const handleInputChange = (e) => {
 		setDoctorData({

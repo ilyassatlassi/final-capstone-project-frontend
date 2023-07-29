@@ -1,8 +1,10 @@
 import React from 'react'
-
+import CreateDoctor from '../components/CreateDoctor'
 function DoctorPage() {
   return (
-    <div>DoctorPage</div>
+    <div>DoctorPage
+      <CreateDoctor/>
+    </div>
   )
 }
 
