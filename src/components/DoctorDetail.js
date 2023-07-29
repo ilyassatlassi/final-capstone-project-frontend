@@ -16,6 +16,9 @@ function DoctorDetail() {
 
   return (
     <div className="text-red-500 shadow flex flex-col lg:flex-row items-center justify-center w-screen h-screen">DoctorDetail
+    <div className="w-[400px] h-[400px] mr-6">
+        <img src={car.photo} alt={car.name} />
+      </div>
     </div>
   )
 }
