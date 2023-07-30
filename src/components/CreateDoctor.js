@@ -68,7 +68,8 @@ function CreateDoctor() {
     });
   };
 
-  const handleAvailabilityClick = () => {
+  const handleAvailabilityClick = (e) => {
+	e.preventDefault();
     setDoctorData({
       ...doctorData,
       availability: true,
@@ -79,7 +80,6 @@ function CreateDoctor() {
     <div className='"container-b-form container"'>
       <form
         className="d-flex flex-column justify-content-center align-items-center"
-        onSubmit={handleCreateNewDoctor}
       >
         <label className="mb-4 h5 d-flex flex-column">
           Name:
@@ -108,7 +108,7 @@ function CreateDoctor() {
             placeholder="Enter photo URL here"
             className="mt-2 add-input"
             type="text"
-            name="photo"
+            name="image"
             value={doctorData.image}
             onChange={handleInputChange}
           />
@@ -120,7 +120,7 @@ function CreateDoctor() {
             placeholder="Enter price here"
             className="mt-2 add-input"
             type="text"
-            name="price"
+            name="consultationFee"
             value={doctorData.consultationFee}
             onChange={handleInputChange}
           />
@@ -142,7 +142,7 @@ function CreateDoctor() {
           <input
             className="mt-2 add-input"
             type="text"
-            name="specialization"
+            name="hospital"
             value={doctorData.hospital}
             onChange={handleInputChange}
           />
@@ -190,7 +190,7 @@ function CreateDoctor() {
           />
         </label>
 
-        <input className="mt-4 button-b-form" type="submit" value="Submit" />
+        <input className="mt-4 button-b-form" type="submit" value="Submit"onClick={handleCreateNewDoctor} />
       </form>
       {successMessage && (
         <p className="mt-2 alert alert-success text-center">{successMessage}</p>
