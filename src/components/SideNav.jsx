@@ -1,5 +1,5 @@
 import React from 'react';
-import { NAVLINKS, date } from '../config/utils';
+import { NAVLINKS, date } from '../constants/constants';
 
 const SideNav = () => (
   <div className=" w-full min-w-[375px] border-r h-screen flex flex-col justify-between py-5 pl-5">
