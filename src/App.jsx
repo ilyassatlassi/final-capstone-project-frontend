@@ -7,7 +7,7 @@ import DoctorPage from './pages/DoctorPage';
 function App() {
   return (
     <Routes>
-      <Route index path="auth/signin" />
+      <Route path="auth/signin" />
       <Route path="/" element={<ProtectedRoute component={AppLayout} />}>
         <Route index element={<DetailPage />} />
         <Route path="/reserve" element={<DoctorPage />} />
