@@ -2,7 +2,7 @@ import React from 'react'
 import DoctorDetail from '../components/DoctorDetail'
 function DetailPage() {
   return (
-    <div>DetailPage
+    <div>
       <DoctorDetail/>
     </div>
     

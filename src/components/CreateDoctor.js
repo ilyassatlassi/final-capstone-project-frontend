@@ -77,130 +77,133 @@ function CreateDoctor() {
   };
 
   return (
-    <div className='"container-b-form container"'>
-      <form
-        className="d-flex flex-column justify-content-center align-items-center"
-      >
-        <label className="mb-4 h5 d-flex flex-column">
-          Name:
-          <input
-            className="mt-2 add-input"
-            type="text"
-            name="name"
-            value={doctorData.name}
-            onChange={handleInputChange}
-          />
-        </label>
-        <label className="mb-4  h5 d-flex flex-column">
-          Description:
-          <textarea
-            className="mt-2 add-input"
-            type="text"
-            name="description"
-            value={doctorData.description}
-            onChange={handleInputChange}
-          />
-        </label>
-
-        <label className="mb-4 h5 d-flex flex-column">
-          Picture:
-          <input
-            placeholder="Enter photo URL here"
-            className="mt-2 add-input"
-            type="text"
-            name="image"
-            value={doctorData.image}
-            onChange={handleInputChange}
-          />
-        </label>
-
-        <label className="mb-2 h5 d-flex flex-column">
-          ConsultationFee:
-          <input
-            placeholder="Enter price here"
-            className="mt-2 add-input"
-            type="text"
-            name="consultationFee"
-            value={doctorData.consultationFee}
-            onChange={handleInputChange}
-          />
-        </label>
-
-        <label className="mb-2 h5 d-flex flex-column">
-          Specialization:
-          <input
-            className="mt-2 add-input"
-            type="text"
-            name="specialization"
-            value={doctorData.specialization}
-            onChange={handleInputChange}
-          />
-        </label>
-
-        <label className="mb-2 h5 d-flex flex-column">
-          Hospital:
-          <input
-            className="mt-2 add-input"
-            type="text"
-            name="hospital"
-            value={doctorData.hospital}
-            onChange={handleInputChange}
-          />
-        </label>
-        <label className="mb-4 h5 d-flex flex-column">
-          Availability:
-          <button className="mt-2 add-input" onClick={handleAvailabilityClick}>
-            Set Availability to True
-          </button>
-        </label>
-
-        <label className="mb-4 h5 d-flex flex-column">
-          Facebook:
-          <input
-            placeholder="Enter facebook URL here"
-            className="mt-2 add-input"
-            type="text"
-            name="facebook"
-            value={doctorData.facebook}
-            onChange={handleInputChange}
-          />
-        </label>
-
-        <label className="mb-4 h5 d-flex flex-column">
-          Instagram:
-          <input
-            placeholder="Enter instagram URL here"
-            className="mt-2 add-input"
-            type="text"
-            name="instagram"
-            value={doctorData.instagram}
-            onChange={handleInputChange}
-          />
-        </label>
-
-        <label className="mb-4 h5 d-flex flex-column">
-          Twitter:
-          <input
-            placeholder="Enter twitter URL here"
-            className="mt-2 add-input"
-            type="text"
-            name="twitter"
-            value={doctorData.twitter}
-            onChange={handleInputChange}
-          />
-        </label>
-
-        <input className="mt-4 button-b-form" type="submit" value="Submit"onClick={handleCreateNewDoctor} />
-      </form>
-      {successMessage && (
-        <p className="mt-2 alert alert-success text-center">{successMessage}</p>
-      )}
-      {errorMessage && (
-        <p className="mt-2 alert alert-danger text-center">
-          Please fill out all fields
-        </p>
-      )}
-    </div>
+    <div className='flex flex-col items-center justify-center'>
+		<div className="h-auto w-auto lg:w-[800px] p-6 bg-slate-300 rounded-lg shadow-lg" >
+		<h1 className="text-center text-[25px] font-bold mb-6"> Add Doctors</h1>
+		  <form
+			className=""
+		  >
+			<label className="mb-4 h5 d-flex flex-column">
+			  Name:
+			  <input
+				className="mt-2 add-input"
+				type="text"
+				name="name"
+				value={doctorData.name}
+				onChange={handleInputChange}
+			  />
+			</label>
+			<label className="mb-4  h5 d-flex flex-column">
+			  Description:
+			  <textarea
+				className="mt-2 add-input"
+				type="text"
+				name="description"
+				value={doctorData.description}
+				onChange={handleInputChange}
+			  />
+			</label>
+		
+			<label className="mb-4 h5 d-flex flex-column">
+			  Picture:
+			  <input
+				placeholder="Enter photo URL here"
+				className="mt-2 add-input"
+				type="text"
+				name="image"
+				value={doctorData.image}
+				onChange={handleInputChange}
+			  />
+			</label>
+		
+			<label className="mb-2 h5 d-flex flex-column">
+			  ConsultationFee:
+			  <input
+				placeholder="Enter price here"
+				className="mt-2 add-input"
+				type="text"
+				name="consultationFee"
+				value={doctorData.consultationFee}
+				onChange={handleInputChange}
+			  />
+			</label>
+		
+			<label className="mb-2 h5 d-flex flex-column">
+			  Specialization:
+			  <input
+				className="mt-2 add-input"
+				type="text"
+				name="specialization"
+				value={doctorData.specialization}
+				onChange={handleInputChange}
+			  />
+			</label>
+		
+			<label className="mb-2 h5 d-flex flex-column">
+			  Hospital:
+			  <input
+				className="mt-2 add-input"
+				type="text"
+				name="hospital"
+				value={doctorData.hospital}
+				onChange={handleInputChange}
+			  />
+			</label>
+			<label className="mb-4 h5 d-flex flex-column">
+			  Availability:
+			  <button className="mt-2 add-input" onClick={handleAvailabilityClick}>
+				Set Availability to True
+			  </button>
+			</label>
+		
+			<label className="mb-4 h5 d-flex flex-column">
+			  Facebook:
+			  <input
+				placeholder="Enter facebook URL here"
+				className="mt-2 add-input"
+				type="text"
+				name="facebook"
+				value={doctorData.facebook}
+				onChange={handleInputChange}
+			  />
+			</label>
+		
+			<label className="mb-4 h5 d-flex flex-column">
+			  Instagram:
+			  <input
+				placeholder="Enter instagram URL here"
+				className="mt-2 add-input"
+				type="text"
+				name="instagram"
+				value={doctorData.instagram}
+				onChange={handleInputChange}
+			  />
+			</label>
+		
+			<label className="mb-4 h5 d-flex flex-column">
+			  Twitter:
+			  <input
+				placeholder="Enter twitter URL here"
+				className="mt-2 add-input"
+				type="text"
+				name="twitter"
+				value={doctorData.twitter}
+				onChange={handleInputChange}
+			  />
+			</label>
+		
+			<input className="mt-4 button-b-form" type="submit" value="Submit"onClick={handleCreateNewDoctor} />
+		  </form>
+		  {successMessage && (
+			<p className="mt-2 alert alert-success text-center">{successMessage}</p>
+		  )}
+		  {errorMessage && (
+			<p className="mt-2 alert alert-danger text-center">
+			  Please fill out all fields
+			</p>
+		  )}
+		</div>
+	</div>
   );
 }
 
