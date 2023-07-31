@@ -1,12 +1,13 @@
-import React from 'react'
-import DoctorDetail from '../components/DoctorDetail'
+import React from 'react';
+import DoctorDetail from '../components/DoctorDetail';
+
 function DetailPage() {
   return (
     <div>
-      <DoctorDetail/>
+      <DoctorDetail />
     </div>
-    
-  )
+
+  );
 }
 
-export default DetailPage
+export default DetailPage;
