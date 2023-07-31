@@ -82,20 +82,21 @@ function CreateDoctor() {
 		<h1 className="text-center text-[25px] font-bold mb-6"> Add Doctors</h1>
 		  <form
 			className="space-y-4 shadow">
-			<label className="mb-4 h5 d-flex flex-column">
+			<label className="block mb-1">
 			  Name:
 			  <input
-				className="mt-2 add-input"
+				className="w-full border border-gray-300 rounded px-3 py-2"
 				type="text"
 				name="name"
 				value={doctorData.name}
 				onChange={handleInputChange}
 			  />
 			</label>
-			<label className="mb-4  h5 d-flex flex-column">
+
+			<label className="block mb-1">
 			  Description:
 			  <textarea
-				className="mt-2 add-input"
+				className="w-full border border-gray-300 rounded px-3 py-2"
 				type="text"
 				name="description"
 				value={doctorData.description}
@@ -103,11 +104,11 @@ function CreateDoctor() {
 			  />
 			</label>
 		
-			<label className="mb-4 h5 d-flex flex-column">
+			<label className="block mb-1">
 			  Picture:
 			  <input
 				placeholder="Enter photo URL here"
-				className="mt-2 add-input"
+				className="w-full border border-gray-300 rounded px-3 py-2"
 				type="text"
 				name="image"
 				value={doctorData.image}
@@ -115,11 +116,11 @@ function CreateDoctor() {
 			  />
 			</label>
 		
-			<label className="mb-2 h5 d-flex flex-column">
+			<label className="block mb-1">
 			  ConsultationFee:
 			  <input
 				placeholder="Enter price here"
-				className="mt-2 add-input"
+				className="w-full border border-gray-300 rounded px-3 py-2"
 				type="text"
 				name="consultationFee"
 				value={doctorData.consultationFee}
@@ -127,10 +128,10 @@ function CreateDoctor() {
 			  />
 			</label>
 		
-			<label className="mb-2 h5 d-flex flex-column">
+			<label className="block mb-1">
 			  Specialization:
 			  <input
-				className="mt-2 add-input"
+				className="w-full border border-gray-300 rounded px-3 py-2"
 				type="text"
 				name="specialization"
 				value={doctorData.specialization}
@@ -138,28 +139,28 @@ function CreateDoctor() {
 			  />
 			</label>
 		
-			<label className="mb-2 h5 d-flex flex-column">
+			<label className="block mb-1">
 			  Hospital:
 			  <input
-				className="mt-2 add-input"
+				className="w-full border border-gray-300 rounded px-3 py-2"
 				type="text"
 				name="hospital"
 				value={doctorData.hospital}
 				onChange={handleInputChange}
 			  />
 			</label>
-			<label className="mb-4 h5 d-flex flex-column">
+			<label className="block mb-1">
 			  Availability:
-			  <button className="mt-2 add-input" onClick={handleAvailabilityClick}>
+			  <button className="w-full border border-gray-300 rounded px-3 py-2" onClick={handleAvailabilityClick}>
 				Set Availability to True
 			  </button>
 			</label>
 		
-			<label className="mb-4 h5 d-flex flex-column">
+			<label className="block mb-1">
 			  Facebook:
 			  <input
 				placeholder="Enter facebook URL here"
-				className="mt-2 add-input"
+				className="w-full border border-gray-300 rounded px-3 py-2"
 				type="text"
 				name="facebook"
 				value={doctorData.facebook}
@@ -167,11 +168,11 @@ function CreateDoctor() {
 			  />
 			</label>
 		
-			<label className="mb-4 h5 d-flex flex-column">
+			<label className="block mb-1">
 			  Instagram:
 			  <input
 				placeholder="Enter instagram URL here"
-				className="mt-2 add-input"
+				className="w-full border border-gray-300 rounded px-3 py-2"
 				type="text"
 				name="instagram"
 				value={doctorData.instagram}
@@ -179,11 +180,11 @@ function CreateDoctor() {
 			  />
 			</label>
 		
-			<label className="mb-4 h5 d-flex flex-column">
+			<label className="block mb-1">
 			  Twitter:
 			  <input
 				placeholder="Enter twitter URL here"
-				className="mt-2 add-input"
+				className="w-full border border-gray-300 rounded px-3 py-2"
 				type="text"
 				name="twitter"
 				value={doctorData.twitter}
