@@ -1,15 +1,14 @@
-// import DetailPage from './pages/DetailPage';
-// import DoctorPage from './pages/DoctorPage';
-
-import SideNav from './components/SideNav';
+// import AppLayout from './layout/AppLayout';
+import { Route, Routes } from 'react-router-dom';
+import AppLayout from './layout/AppLayout';
 
 function App() {
   return (
-    <div className="App">
-      {/* <DetailPage/> */}
-      {/* <DoctorPage /> */}
-      <SideNav />
-    </div>
+    <Routes>
+      <Route path="/" element={<AppLayout />}>
+        {/* <Route index element={<DetailPage />} /> */}
+      </Route>
+    </Routes>
   );
 }
 
