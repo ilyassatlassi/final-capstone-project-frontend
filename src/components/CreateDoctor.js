@@ -81,8 +81,7 @@ function CreateDoctor() {
 		<div className="h-auto w-auto lg:w-[800px] p-6 bg-slate-300 rounded-lg shadow-lg" >
 		<h1 className="text-center text-[25px] font-bold mb-6"> Add Doctors</h1>
 		  <form
-			className=""
-		  >
+			className="space-y-4 shadow">
 			<label className="mb-4 h5 d-flex flex-column">
 			  Name:
 			  <input
