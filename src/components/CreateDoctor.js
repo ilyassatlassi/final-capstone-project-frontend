@@ -72,7 +72,7 @@ function CreateDoctor() {
 	e.preventDefault();
     setDoctorData({
       ...doctorData,
-      availability: true,
+      availability: !doctorData.availability,
     });
   };
 
@@ -81,7 +81,7 @@ function CreateDoctor() {
 		<div className="h-auto w-auto lg:w-[800px] p-6 bg-slate-300 rounded-lg shadow-lg" >
 		<h1 className="text-center text-[25px] font-bold mb-6"> Add Doctors</h1>
 		  <form
-			className="space-y-4 shadow">
+			className="space-y-4 shadow-lg px-1">
 			<label className="block mb-1">
 			  Name:
 			  <input
@@ -149,11 +149,12 @@ function CreateDoctor() {
 				onChange={handleInputChange}
 			  />
 			</label>
-			<label className="block mb-1">
+			<label className="flex mb-1">
 			  Availability:
-			  <button className="w-full border border-gray-300 rounded px-3 py-2" onClick={handleAvailabilityClick}>
-				Set Availability to True
-			  </button>
+			  <div className=" bg-gray-200 cursor-pointer relative w-16 h-8 rounded-full ml-2">
+				<input type="checkbox" className="sr-only peer"/>
+				<span  className=" w-2/5 h-4/5 bg-[#96bf01] absolute rounded-full left-1 top-1 peer-checked:bg-green-500 peer-checked:left-9"></span>
+			  </div>
 			</label>
 		
 			<label className="block mb-1">
@@ -204,10 +205,10 @@ function CreateDoctor() {
           </div>
 		  </form>
 		  {successMessage && (
-			<p className="mt-2 alert alert-success text-center">{successMessage}</p>
+			<p className="bg-green-200 font-bold mb-6 p-2 rounded shadow-lg">{successMessage}</p>
 		  )}
 		  {errorMessage && (
-			<p className="mt-2 alert alert-danger text-center">
+			<p className="bg-red-600 font-bold mb-6 p-2 rounded shadow-lg">
 			  Please fill out all fields
 			</p>
 		  )}
