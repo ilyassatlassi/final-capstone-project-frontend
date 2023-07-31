@@ -3,10 +3,9 @@ import CreateDoctor from '../components/CreateDoctor';
 
 function DoctorPage() {
   return (
-    <div>
-      DoctorPage
-      <CreateDoctor />
-    </div>
+
+    <CreateDoctor />
+
   );
 }
 
