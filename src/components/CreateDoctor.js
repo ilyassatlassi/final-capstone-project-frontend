@@ -192,7 +192,16 @@ function CreateDoctor() {
 			  />
 			</label>
 		
-			<input className="mt-4 button-b-form" type="submit" value="Submit"onClick={handleCreateNewDoctor} />
+			{/* <input className="mt-4 button-b-form" type="submit" value="Submit"onClick={handleCreateNewDoctor} /> */}
+			<div className="flex justify-center items-center">
+            <button
+              type="submit"
+			  onClick={handleCreateNewDoctor}
+              className="w-auto lg:w-60 p-12 m-12 bg-[#96bf01] hover:bg-green-500 text-white rounded py-2 font-bold"
+            >
+              Add Doctor
+            </button>
+          </div>
 		  </form>
 		  {successMessage && (
 			<p className="mt-2 alert alert-success text-center">{successMessage}</p>
