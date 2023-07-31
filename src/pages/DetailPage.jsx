@@ -3,9 +3,7 @@ import DoctorDetail from '../components/DoctorDetail';
 
 function DetailPage() {
   return (
-    <div>
-      <DoctorDetail />
-    </div>
+    <DoctorDetail />
 
   );
 }
