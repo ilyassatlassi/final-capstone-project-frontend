@@ -13,7 +13,7 @@ function DoctorDetail() {
   // }, [id]);
 
   return (
-    <div className="text-red-500 shadow flex flex-col lg:flex-row items-center justify-center w-screen h-screen">
+    <div className="text-red-500 shadow flex flex-col lg:flex-row justify-center w-screen h-screen">
       DoctorDetail
       <div className="w-[400px] h-[400px] mr-6">
         {/* <img src={Doctor.image} alt={Doctor.name} /> */}

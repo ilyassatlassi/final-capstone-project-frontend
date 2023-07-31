@@ -76,14 +76,14 @@ function CreateDoctor() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center">
-      <div className="h-auto w-auto lg:w-[800px] p-6 bg-slate-300 rounded-lg shadow-lg">
-        <h1 className="text-center text-[25px] font-bold mb-6"> Add Doctors</h1>
+    <div className="flex items-center justify-center flex-1 py-10 px-10">
+      <div className="h-auto w-full lg:w-[800px]  ">
+        <h1 className="text-center text-[25px] font-bold "> Add Doctors</h1>
         <form
-          className="space-y-4 shadow-lg px-1"
+          className="space-y-4 px-1 h-full"
           onSubmit={handleCreateNewDoctor}
         >
-          <label className="block mb-1" htmlFor>
+          <label className="" htmlFor>
             Name:
             <input
               className="w-full border border-gray-300 rounded px-3 py-2"
@@ -94,7 +94,7 @@ function CreateDoctor() {
             />
           </label>
 
-          <label className="block mb-1" htmlFor>
+          <label className=" " htmlFor>
             Description:
             <textarea
               className="w-full border border-gray-300 rounded px-3 py-2"
@@ -105,7 +105,7 @@ function CreateDoctor() {
             />
           </label>
 
-          <label className="block mb-1" htmlFor>
+          <label className="" htmlFor>
             Picture:
             <input
               placeholder="Enter photo URL here"
@@ -117,7 +117,7 @@ function CreateDoctor() {
             />
           </label>
 
-          <label className="block mb-1" htmlFor>
+          <label className="" htmlFor>
             ConsultationFee:
             <input
               placeholder="Enter price here"
@@ -129,7 +129,7 @@ function CreateDoctor() {
             />
           </label>
 
-          <label className="block mb-1" htmlFor>
+          <label className="" htmlFor>
             Specialization:
             <input
               className="w-full border border-gray-300 rounded px-3 py-2"
@@ -140,7 +140,7 @@ function CreateDoctor() {
             />
           </label>
 
-          <label className="block mb-1" htmlFor>
+          <label className="" htmlFor>
             Hospital:
             <input
               className="w-full border border-gray-300 rounded px-3 py-2"
@@ -150,7 +150,7 @@ function CreateDoctor() {
               onChange={handleInputChange}
             />
           </label>
-          <label className="flex mb-1" htmlFor>
+          <label className="flex" htmlFor>
             Availability:
             <div className=" bg-gray-200 cursor-pointer relative w-16 h-8 rounded-full ml-2">
               <input type="checkbox" className="sr-only peer" checked={doctorData.availability} onChange={handleAvailabilityClick} />
@@ -158,7 +158,7 @@ function CreateDoctor() {
             </div>
           </label>
 
-          <label className="block mb-1" htmlFor>
+          <label className="" htmlFor>
             Facebook:
             <input
               placeholder="Enter facebook URL here"
@@ -170,7 +170,7 @@ function CreateDoctor() {
             />
           </label>
 
-          <label className="block mb-1" htmlFor>
+          <label className=" " htmlFor>
             Instagram:
             <input
               placeholder="Enter instagram URL here"
@@ -182,7 +182,7 @@ function CreateDoctor() {
             />
           </label>
 
-          <label className="block mb-1" htmlFor>
+          <label className=" " htmlFor>
             Twitter:
             <input
               placeholder="Enter twitter URL here"
@@ -197,7 +197,7 @@ function CreateDoctor() {
           <div className="flex justify-center items-center">
             <button
               type="submit"
-              className="w-auto lg:w-60 p-12 m-12 bg-[#96bf01] hover:bg-green-500 text-white rounded py-2 font-bold"
+              className="w-auto lg:w-60  bg-[#96bf01] hover:bg-green-500 text-white rounded py-2 font-bold"
             >
               Add Doctor
             </button>
