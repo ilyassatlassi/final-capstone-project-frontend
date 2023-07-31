@@ -152,7 +152,7 @@ function CreateDoctor() {
 			<label className="flex mb-1">
 			  Availability:
 			  <div className=" bg-gray-200 cursor-pointer relative w-16 h-8 rounded-full ml-2">
-				<input type="checkbox" className="sr-only peer"/>
+				<input type="checkbox" className="sr-only peer"  checked={doctorData.availability} onChange={handleAvailabilityClick}/>
 				<span  className=" w-2/5 h-4/5 bg-[#96bf01] absolute rounded-full left-1 top-1 peer-checked:bg-green-500 peer-checked:left-9"></span>
 			  </div>
 			</label>
