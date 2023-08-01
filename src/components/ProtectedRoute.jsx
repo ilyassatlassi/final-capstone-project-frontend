@@ -5,12 +5,14 @@ import PropTypes from 'prop-types';
 
 const ProtectedRoute = ({ component: Component }) => {
   const user = useSelector((state) => state.user.signedIn);
+  const loading = useSelector((state) => state.user.loading);
 
+  if (loading) return <>loading</>;
   if (user) {
     return <Component />;
   }
 
-  return <Navigate to="auth/sign_in" />;
+  return <Navigate to="/auth/sign_in" />;
 };
 
 ProtectedRoute.propTypes = {
