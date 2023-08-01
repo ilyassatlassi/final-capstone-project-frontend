@@ -1,8 +1,10 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { login } from '../../redux/slices/user/index';
+import 'bulma/css/bulma.min.css';
 
 const LoginPage = () => {
   const dispatch = useDispatch();
@@ -11,6 +13,8 @@ const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [progress, setProgress] = useState(0);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -19,59 +23,96 @@ const LoginPage = () => {
       setErrorMessage('Email and password are required.');
       return;
     }
+    setIsLoading(true);
+    // set up the progress bar
+    const interval = setInterval(() => {
+      setProgress((prevProgress) => (prevProgress >= 100 ? 0 : prevProgress + 10));
+    }, 1000);
     try {
       await dispatch(login({ email, password }));
       // navigate the user to home page if authenticated
-      navigate('/signup');
+      navigate('/');
     } catch (error) {
       setErrorMessage(error.message);
+    } finally {
+      setIsLoading(false);
+      // clear the progress bar interval and reset progress
+      clearInterval(interval);
+      setProgress(0);
     }
   };
 
+  const user = useSelector((state) => state.user);
+
+  useEffect(() => {
+    if (user.signedIn) {
+      navigate('/');
+    }
+  }, [user.signedIn, navigate]);
+
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
-      <div className="w-full max-w-md">
-        <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={handleLogin}>
-          <h1 className="text-2xl font-bold mb-4">Log In</h1>
-          {errorMessage && <p className="text-red-500 mb-4">{errorMessage}</p>}
-          <div className="mb-4">
-            <label className="block text-gray-700 font-bold mb-2" htmlFor="email">
-              Email:
-            </label>
-            <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              type="email"
-              id="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
+    <>
+      {isLoading && (
+        <div className="modal is-active">
+          <div className="modal-background" />
+          <div className="modal-content">
+            <progress className="progress is-small is-primary" max="100" value={progress} />
           </div>
-          <div className="mb-6">
-            <label className="block text-gray-700 font-bold mb-2" htmlFor="password">
-              Password:
-            </label>
-            <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              type="password"
-              id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
+        </div>
+      )}
+      <div className="columns is-centered mt-6">
+        <div className="column is-half">
+          <div className="card">
+            <div className="card-content">
+              <h1 className="title is-4 has-text-centered mb-4">Log In</h1>
+              {errorMessage && <p className="has-text-danger has-text-centered mb-4">{errorMessage}</p>}
+              <form onSubmit={handleLogin}>
+                <div className="field">
+                  <label className="label">Email</label>
+                  <div className="control">
+                    <input
+                      className="input"
+                      type="email"
+                      placeholder="Enter your email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
+                  </div>
+                </div>
+                <div className="field">
+                  <label className="label">Password</label>
+                  <div className="control">
+                    <input
+                      className="input"
+                      type="password"
+                      placeholder="Enter your password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                    />
+                  </div>
+                </div>
+                <div className="field is-grouped is-grouped-centered">
+                  <div className="control">
+                    <button
+                      className={`button is-primary ${isLoading && 'is-loading'}`}
+                      disabled={isLoading}
+                      type="submit"
+                    >
+                      Log In
+                    </button>
+                  </div>
+                  <div className="control">
+                    <Link className="button is-light" to="/auth/register">
+                      Sign Up
+                    </Link>
+                  </div>
+                </div>
+              </form>
+            </div>
           </div>
-          <div className="flex items-center justify-between">
-            <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-              type="submit"
-            >
-              Log In
-            </button>
-            <Link className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" to="/auth/register">
-              Dont have an account? Sign up here.
-            </Link>
-          </div>
-        </form>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
