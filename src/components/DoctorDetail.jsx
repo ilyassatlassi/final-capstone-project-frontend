@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { fetchDoctor } from "../redux/slices/doctors";
+import { FaTwitter, FaInstagram, FaFacebook } from 'react-icons/fa';
+
 
 function DoctorDetail() {
   const dispatch = useDispatch();
