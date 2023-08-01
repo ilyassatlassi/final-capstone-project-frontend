@@ -31,7 +31,9 @@ const LoginPage = () => {
     try {
       await dispatch(login({ email, password }));
       // navigate the user to home page if authenticated
+      console.log('Navigating to home page...');
       navigate('/');
+      console.log('Navigated to home page');
     } catch (error) {
       setErrorMessage(error.message);
     } finally {
