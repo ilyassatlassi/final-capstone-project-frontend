@@ -14,10 +14,15 @@ const LoginPage = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    // check if email and password are not empty
+    if (!email.trim() || !password.trim()) {
+      setErrorMessage('Email and password are required.');
+      return;
+    }
     try {
       await dispatch(login({ email, password }));
       // navigate the user to home page if authenticated
-      navigate('/');
+      navigate('/signup');
     } catch (error) {
       setErrorMessage(error.message);
     }
