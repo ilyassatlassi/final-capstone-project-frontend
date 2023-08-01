@@ -20,9 +20,9 @@ const LoginPage = () => {
       return;
     }
     try {
-      await dispatch(login({ email, password }));
+       dispatch(login({ email, password }));
       // navigate the user to home page if authenticated
-      navigate('/signup');
+      navigate('/');
     } catch (error) {
       setErrorMessage(error.message);
     }

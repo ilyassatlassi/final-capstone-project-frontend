@@ -4,10 +4,10 @@ import api from '../../api';
 
 const initialState = {
   doctors: [],
+  Doctor: {},
   ready: false,
   errors: null,
 };
-
 const fetchDoctors = createAsyncThunk(
   'doctors/fetchDoctors',
   async (_, thunkAPI) => {
@@ -17,6 +17,31 @@ const fetchDoctors = createAsyncThunk(
 
       const resp = await axios.get(
         `${api.DOCTORS_ENDPOINT}`,
+        {
+          headers: auth,
+        },
+      );
+      if (resp.status === 200) {
+        return resp.data;
+      }
+      return thunkAPI.rejectWithValue(resp.data);
+    } catch (err) {
+      return thunkAPI.rejectWithValue(err.response.data.errors);
+    }
+  },
+);
+
+const fetchDoctor = createAsyncThunk(
+  'doctors/fetchDoctor',
+  async ({
+    id,
+  }, thunkAPI) => {
+    try {
+      let auth = localStorage.getItem('auth');
+      auth = JSON.parse(auth);
+
+      const resp = await axios.get(
+        `${api.DOCTORS_ENDPOINT}/${id}`,
         {
           headers: auth,
         },
@@ -118,7 +143,23 @@ const doctorsSlice = createSlice({
     }));
     builder.addCase(fetchDoctors.rejected, (state, { payload }) => ({
       ...state,
-      doctors: [],
+      Doctors: [],
+      errors: payload,
+      ready: true,
+    }));
+    builder.addCase(fetchDoctor.pending, (state) => ({
+      ...state,
+      ready: false,
+    }));
+    builder.addCase(fetchDoctor.fulfilled, (state, { payload }) => ({
+      ...state,
+      Doctor: payload,
+      errors: null,
+      ready: true,
+    }));
+    builder.addCase(fetchDoctor.rejected, (state, { payload }) => ({
+      ...state,
+      Doctor: {},
       errors: payload,
       ready: true,
     }));
@@ -155,5 +196,5 @@ const doctorsSlice = createSlice({
   },
 });
 
-export { fetchDoctors, addDoctor, deleteDoctor };
+export { fetchDoctors, addDoctor, deleteDoctor, fetchDoctor };
 export default doctorsSlice.reducer;
