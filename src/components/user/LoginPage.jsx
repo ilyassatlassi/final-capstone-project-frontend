@@ -65,7 +65,7 @@ const LoginPage = () => {
             >
               Log In
             </button>
-            <Link className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" to="/signup">
+            <Link className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" to="/auth/register">
               Dont have an account? Sign up here.
             </Link>
           </div>
