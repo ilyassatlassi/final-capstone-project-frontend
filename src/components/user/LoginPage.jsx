@@ -66,7 +66,7 @@ const LoginPage = () => {
         <div className="column is-half">
           <div className="card">
             <div className="card-content">
-              <h1 className="title is-4 has-text-centered mb-4">Log In</h1>
+              <h1 className="title is-4 has-text-centered mb-4">Log In Page</h1>
               {errorMessage && <p className="has-text-danger has-text-centered mb-4">{errorMessage}</p>}
               <form onSubmit={handleLogin}>
                 <div className="field">
