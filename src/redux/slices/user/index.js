@@ -86,7 +86,10 @@ const authenticate = createAsyncThunk(
           headers: auth,
         },
       );
-      if (resp.status === 200) return resp.data;
+      if (resp.status === 200 || auth) {
+        console.log(resp.status, auth);
+        return resp.data;
+      }
       return thunkAPI.rejectWithValue(resp);
     } catch (err) {
       return thunkAPI.rejectWithValue(err.message);
@@ -103,7 +106,7 @@ const userSlice = createSlice({
       loading: true,
     }));
     builder.addCase(register.fulfilled, (_, { payload }) => ({
-      user: payload,
+      user: { payload },
       signedIn: true,
       loading: false,
       error: null,
