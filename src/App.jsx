@@ -9,7 +9,7 @@ import LoginPage from './components/user/LoginPage';
 function App() {
   return (
     <Routes>
-      <Route path="//auth/sign_in" element={<LoginPage />} />
+      <Route path="/auth/sign_in" element={<LoginPage />} />
       <Route path="/auth/register" element={<Signup />} />
       <Route path="/" element={<ProtectedRoute component={AppLayout} />}>
         <Route index element={<DetailPage />} />
