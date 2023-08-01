@@ -21,7 +21,7 @@ function DoctorDetail() {
       <div className="flex flex-col">
         {/* <h3 className="uppercase font-bold">Doctor Details</h3> */}
 
-        <div className="flex m-3">
+        <div className="flex mt-20">
           <div className="flex justify-center lg:w-3/4">
             <img
               src="https://img.freepik.com/free-photo/portrait-smiling-young-woman-doctor-healthcare-medical-worker-pointing-fingers-left-showing-clini_1258-88108.jpg?w=996&t=st=1690911597~exp=1690912197~hmac=3a4f5f061838832744eb3e61e5469ab1395d27e15ea84787339d4a6f9f07fbeb"
@@ -30,8 +30,9 @@ function DoctorDetail() {
             />
           </div>
           <div className="lg:w-1/4">
-            <div className=" font-bold">{Doctor.name}</div>
-            <table className="table-auto w-full border-collapse">
+            <div className="uppercase font-bold text-right">{Doctor.name}</div>
+            <div className="text-center mt-2">{Doctor.description}</div>
+            <table className="table-auto w-full border-collapse mt-2">
               <tbody>
                 <tr className="bg-gray-100">
                   <td className="px-4 py-2 ">Fee</td>
@@ -42,17 +43,9 @@ function DoctorDetail() {
                   <td className="px-4 py-2">{Doctor.specialization}</td>
                 </tr>
                 <tr className="bg-gray-100">
-                  <td className="px-4 py-2">Age</td>
-                  <td className="px-4 py-2">30</td>
+                  <td className="px-4 py-2">Hospital</td>
+                  <td className="px-4 py-2">{Doctor.hospital}</td>
                 </tr>
-                <tr>
-                  <td className="px-4 py-2">Email</td>
-                  <td className="px-4 py-2">johndoe@example.com</td>
-                </tr>
-                {/* <tr>
-      <td className="px-4 py-2">Another Row</td>
-      <td className="px-4 py-2">Value</td>
-    </tr> */}
               </tbody>
             </table>
 
