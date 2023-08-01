@@ -2,8 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { fetchDoctor } from "../redux/slices/doctors";
-import { FaTwitter, FaInstagram, FaFacebook } from 'react-icons/fa';
-
+import { FaTwitter, FaInstagram, FaFacebook } from "react-icons/fa";
 
 function DoctorDetail() {
   const dispatch = useDispatch();
@@ -51,7 +50,29 @@ function DoctorDetail() {
               </tbody>
             </table>
 
-            <div></div>
+            <div className="flex flex-row justify-around mt-6">
+              <a
+                href="https://twitter.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FaTwitter size={30} color="blue" />
+              </a>
+              <a
+                href="https://instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FaInstagram size={30} color="purple" />
+              </a>
+              <a
+                href="https://facebook.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FaFacebook size={30} color="blue" />
+              </a>
+            </div>
           </div>
         </div>
       </div>
