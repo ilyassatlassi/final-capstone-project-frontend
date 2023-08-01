@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { register } from '../redux/slices/user';
 
 const Signup = () => {
-  const user = useSelector((state) => state.user.signedIn);
-  const dispatch = useDispatch();
+  const [errorMessage, setErrorMessage] = useState('');
   const [inputState, setInputState] = useState({
     name: '',
     email: '',
     password: '',
   });
-  const [errorMessage, setErrorMessage] = useState('');
+  const dispatch = useDispatch();
+
   const navigate = useNavigate();
 
   const handleInputChange = (e) => {
@@ -45,9 +45,9 @@ const Signup = () => {
     navigate('/');
   };
 
-  if (user) {
-    return <Navigate to="/" />;
-  }
+  // if (auth !== null) {
+  //   return <Navigate to="/" />;
+  // }
 
   return (
     <div className="max-w-screen-xl mx-auto px-5 pt-20">
