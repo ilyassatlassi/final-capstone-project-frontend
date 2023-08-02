@@ -5,6 +5,7 @@ import DetailPage from './pages/DetailPage';
 import DoctorPage from './pages/DoctorPage';
 import Signup from './components/Signup';
 import LoginPage from './components/user/LoginPage';
+import HomePage from './pages/HomePage';
 
 function App() {
   return (
@@ -12,7 +13,7 @@ function App() {
       <Route path="/auth/sign_in" element={<LoginPage />} />
       <Route path="/auth/register" element={<Signup />} />
       <Route path="/" element={<ProtectedRoute component={AppLayout} />}>
-        <Route index element={<DetailPage />} />
+        <Route index element={<HomePage />} />
         <Route path="/reserve" element={<DoctorPage />} />
         <Route path="/detailsPage/:id" element={<DetailPage />} />
       </Route>
