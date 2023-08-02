@@ -46,15 +46,15 @@ const addReservation = createAsyncThunk(
       const resp = await axios.post(
         `${api.RESERVATIONS_ENDPOINT}`,
         {
-          city,
-          time,
-          date,
+          city:city,
+          time:time,
+          date:date,
           doctor_id: doctorId,
         },
         {
           headers: auth,
         },
-      );
+      )
       if (resp.status === 201) {
         return resp.data;
       }
