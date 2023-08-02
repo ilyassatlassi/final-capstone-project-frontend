@@ -40,16 +40,10 @@ function CreateDoctor() {
     dispatch(addDoctor(doctorData));
     dispatch(fetchDoctors()); // Fetch doctor after new doctor creation
     setDoctorData({
-      image: '',
       name: '',
-      specialization: '',
-      consultationFee: '',
-      hospital: '',
-      availability: '',
-      description: '',
-      facebook: '',
-      twitter: '',
-      instagram: '',
+      city: '',
+      date: '',
+      time: '',
     });
     setSuccessMessage('Doctor created successfully');
 
@@ -84,7 +78,7 @@ function CreateDoctor() {
           onSubmit={handleCreateNewDoctor}
         >
           <label className="" htmlFor>
-            Name:
+            Select a Doctor:
             <input
               className="w-full border border-gray-300 rounded px-3 py-2"
               type="text"
@@ -95,101 +89,34 @@ function CreateDoctor() {
           </label>
 
           <label className=" " htmlFor>
-            Description:
+            What city are you currently located?:
             <textarea
               className="w-full border border-gray-300 rounded px-3 py-2"
               type="text"
-              name="description"
-              value={doctorData.description}
+              name="city"
+              value={doctorData.city}
               onChange={handleInputChange}
             />
           </label>
 
           <label className="" htmlFor>
-            Picture:
+          What day do you want to meet with your doctor:
             <input
-              placeholder="Enter photo URL here"
               className="w-full border border-gray-300 rounded px-3 py-2"
-              type="text"
-              name="image"
-              value={doctorData.image}
+              type="date"
+              name="date"
+              value={doctorData.date}
               onChange={handleInputChange}
             />
           </label>
 
           <label className="" htmlFor>
-            ConsultationFee:
-            <input
-              placeholder="Enter price here"
-              className="w-full border border-gray-300 rounded px-3 py-2"
-              type="text"
-              name="consultationFee"
-              value={doctorData.consultationFee}
-              onChange={handleInputChange}
-            />
-          </label>
-
-          <label className="" htmlFor>
-            Specialization:
+           What time do you want to meet with your doctor?:
             <input
               className="w-full border border-gray-300 rounded px-3 py-2"
               type="text"
-              name="specialization"
-              value={doctorData.specialization}
-              onChange={handleInputChange}
-            />
-          </label>
-
-          <label className="" htmlFor>
-            Hospital:
-            <input
-              className="w-full border border-gray-300 rounded px-3 py-2"
-              type="text"
-              name="hospital"
-              value={doctorData.hospital}
-              onChange={handleInputChange}
-            />
-          </label>
-          <label className="flex" htmlFor>
-            Availability:
-            <div className=" bg-gray-200 cursor-pointer relative w-16 h-8 rounded-full ml-2">
-              <input type="checkbox" className="sr-only peer" checked={doctorData.availability} onChange={handleAvailabilityClick} />
-              <span className=" w-2/5 h-4/5 bg-[#96bf01] absolute rounded-full left-1 top-1 peer-checked:bg-green-500 peer-checked:left-9" />
-            </div>
-          </label>
-
-          <label className="" htmlFor>
-            Facebook:
-            <input
-              placeholder="Enter facebook URL here"
-              className="w-full border border-gray-300 rounded px-3 py-2"
-              type="text"
-              name="facebook"
-              value={doctorData.facebook}
-              onChange={handleInputChange}
-            />
-          </label>
-
-          <label className=" " htmlFor>
-            Instagram:
-            <input
-              placeholder="Enter instagram URL here"
-              className="w-full border border-gray-300 rounded px-3 py-2"
-              type="text"
-              name="instagram"
-              value={doctorData.instagram}
-              onChange={handleInputChange}
-            />
-          </label>
-
-          <label className=" " htmlFor>
-            Twitter:
-            <input
-              placeholder="Enter twitter URL here"
-              className="w-full border border-gray-300 rounded px-3 py-2"
-              type="text"
-              name="twitter"
-              value={doctorData.twitter}
+              name="time"
+              value={doctorData.time}
               onChange={handleInputChange}
             />
           </label>
@@ -199,7 +126,7 @@ function CreateDoctor() {
               type="submit"
               className="w-auto lg:w-60  bg-[#96bf01] hover:bg-green-500 text-white rounded py-2 font-bold"
             >
-              Add Doctor
+              Reserve Doctor
             </button>
           </div>
         </form>
