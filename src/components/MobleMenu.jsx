@@ -62,23 +62,23 @@ const MobileMenu = ({ modalIsOpen, onModalClose }) => {
                 </NavLink>
               ))}
               {role === 'admin' && (
-            ADMINLINKS.map(({ name, route }) => (
-              <NavLink
-                key={name}
-                to={route}
-                className="block py-2 px-5 text-gray-600 hover:text-white hover:bg-[#97BF0E] transition-colors duration-500 uppercase font-bold"
-                style={({ isActive }) => ({ backgroundColor: isActive ? '#97bf0e' : '', color: isActive ? '#fff' : '' })}
-              >
-                {name}
-              </NavLink>
-            ))
-          )}
+                ADMINLINKS.map(({ name, route }) => (
+                  <NavLink
+                    key={name}
+                    to={route}
+                    className="block py-2 px-5 text-gray-600 hover:text-white hover:bg-[#97BF0E] transition-colors duration-500 uppercase font-bold"
+                    style={({ isActive }) => ({ backgroundColor: isActive ? '#97bf0e' : '', color: isActive ? '#fff' : '' })}
+                  >
+                    {name}
+                  </NavLink>
+                ))
+              )}
             </ul>
           </div>
           <div className="px-5">
             <button
               type="button"
-             className="py-2 px-5 bg-[#96bf01] hover:bg-green-500 rounded-md mb-5 font-bold"
+              className="py-2 px-5 bg-[#96bf01] hover:bg-green-500 rounded-md mb-5 font-bold"
               onClick={() => dispatch(logout())}
             >
               LOGOUT
