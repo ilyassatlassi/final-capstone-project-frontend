@@ -6,6 +6,7 @@ import { FaTwitter, FaInstagram, FaFacebook } from 'react-icons/fa';
 import { IoIosArrowForward } from 'react-icons/io';
 import { BiLeftArrow } from 'react-icons/bi';
 import { fetchDoctor } from '../redux/slices/doctors';
+import Loading from './Loading';
 
 function DoctorDetail() {
   const dispatch = useDispatch();
@@ -19,13 +20,7 @@ function DoctorDetail() {
     );
   }, [dispatch]);
 
-  // useEffect(() => {
-  //   dispatch(
-  //     fetchDoctor(id)
-  //   );
-  // }, [id]);
-
-    if (!ready) return <p>Loading...</p>;
+    if (!ready) return <Loading />;
 
   return (
     <div className=" w-full text-center h-screen relative">
