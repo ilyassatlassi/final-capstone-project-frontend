@@ -6,6 +6,7 @@ import DoctorPage from './pages/DoctorPage';
 import Signup from './components/Signup';
 import LoginPage from './components/user/LoginPage';
 import HomePage from './pages/HomePage';
+import DeleteDoctorPage from './pages/DeleteDoctorPage';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route index element={<HomePage />} />
         <Route path="/reserve" element={<DoctorPage />} />
         <Route path="/detailsPage/:id" element={<DetailPage />} />
+        <Route path="/delete-doctor" element={<DeleteDoctorPage />} />
       </Route>
     </Routes>
   );
