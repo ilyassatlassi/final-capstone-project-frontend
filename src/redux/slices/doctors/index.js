@@ -4,7 +4,7 @@ import api from '../../api';
 
 const initialState = {
   doctors: [],
-  Doctor: {},
+  doctor: {},
   ready: false,
   errors: null,
 };
@@ -153,13 +153,13 @@ const doctorsSlice = createSlice({
     }));
     builder.addCase(fetchDoctor.fulfilled, (state, { payload }) => ({
       ...state,
-      Doctor: payload,
+      doctor: payload,
       errors: null,
       ready: true,
     }));
     builder.addCase(fetchDoctor.rejected, (state, { payload }) => ({
       ...state,
-      Doctor: {},
+      doctor: {},
       errors: payload,
       ready: true,
     }));
