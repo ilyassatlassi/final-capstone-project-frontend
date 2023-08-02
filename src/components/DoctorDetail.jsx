@@ -4,26 +4,39 @@ import { useParams, Link } from 'react-router-dom';
 import { fetchDoctor } from "../redux/slices/doctors";
 import { FaTwitter, FaInstagram, FaFacebook } from "react-icons/fa";
 import { IoIosArrowForward } from 'react-icons/io';
+import { BiLeftArrow } from 'react-icons/bi';
+
 
 function DoctorDetail() {
   const dispatch = useDispatch();
   const { Doctor } = useSelector((state) => state.doctors);
-  // const { id } = useParams();
+  const { id } = useParams();
 
   useEffect(() => {
     dispatch(
       fetchDoctor({
-        id: 51,
+        id: 61,
       })
     );
   }, [dispatch]);
 
+  // useEffect(() => {
+  //   dispatch(
+  //     fetchDoctor(id)
+  //   );
+  // }, [id]);
+
   return (
-    <div className="p-6 w-full text-center ">
+    <div className=" w-full text-center">
       <div className="flex flex-col">
         {/* <h3 className="uppercase font-bold">Doctor Details</h3> */}
 
         <div className="lg:flex justify-around lg:mt-20">
+        <Link to="/" className = "lg:flex flex-col justify-end items-end hidden">
+              <button className="w-auto  bg-[#96bf01] hover:bg-green-500 text-white rounded-r-full mt-10 p-2 font-bold">
+                <BiLeftArrow fill="white" />
+              </button>
+            </Link>
           <div className="flex justify-center lg:w-3/4">
             <img
               src="https://img.freepik.com/free-photo/portrait-smiling-young-woman-doctor-healthcare-medical-worker-pointing-fingers-left-showing-clini_1258-88108.jpg?w=996&t=st=1690911597~exp=1690912197~hmac=3a4f5f061838832744eb3e61e5469ab1395d27e15ea84787339d4a6f9f07fbeb"

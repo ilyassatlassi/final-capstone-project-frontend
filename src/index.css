@@ -54,3 +54,10 @@
 .fade-leave-to {
   opacity: 0;
 }
+
+.back-btn {
+  background-color: transparent;
+  width: fit-content;
+  border: none;
+  color: #97bf10;
+}

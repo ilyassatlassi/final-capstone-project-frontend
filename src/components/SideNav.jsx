@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { NAVLINKS, date } from '../constants/constants';
 
 const SideNav = () => (
-  <div className="w-full h-full flex flex-col justify-between pt-20 lg:py-5 pl-10 lg:pl-5">
+  <div className="w-full h-screen flex flex-col justify-between pt-20 lg:py-5 pl-10 lg:pl-5">
     <div>
       <div className="mb-20 px-5">
         <h1 className="uppercase font-bold"><NavLink to="/"> DocCare</NavLink></h1>
