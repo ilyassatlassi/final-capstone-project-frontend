@@ -78,7 +78,7 @@ const MobileMenu = ({ modalIsOpen, onModalClose }) => {
           <div className="px-5">
             <button
               type="button"
-              className="py-2 px-5 bg-red-100 mb-5"
+             className="py-2 px-5 bg-[#96bf01] hover:bg-green-500 rounded-md mb-5 font-bold"
               onClick={() => dispatch(logout())}
             >
               LOGOUT
