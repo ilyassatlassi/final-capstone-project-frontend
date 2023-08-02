@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchDoctors } from '../redux/slices/doctors';
-// import DeleteDoctor from '../components/DeleteDoctor';
+import DeleteDoctor from '../components/DeleteDoctor';
 
 const DeleteDoctorPage = () => {
   const dispatch = useDispatch();
@@ -65,7 +65,9 @@ const DeleteDoctorPage = () => {
                     <td className="px-4 py-2 whitespace-wrap break-words text-sm text-gray-500">
                       {doctor.hospital}
                     </td>
-
+                    <td className="px-4 py-2 whitespace-wrap text-right text-sm font-medium">
+                      <DeleteDoctor id={doctor.id} />
+                    </td>
                   </tr>
                 ))}
               </tbody>
