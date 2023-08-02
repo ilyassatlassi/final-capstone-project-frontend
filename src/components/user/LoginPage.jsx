@@ -29,11 +29,9 @@ const LoginPage = () => {
       setProgress((prevProgress) => (prevProgress >= 100 ? 0 : prevProgress + 10));
     }, 1000);
     try {
-      await dispatch(login({ email, password }));
+      dispatch(login({ email, password }));
       // navigate the user to home page if authenticated
-      console.log('Navigating to home page...');
       navigate('/');
-      console.log('Navigated to home page');
     } catch (error) {
       setErrorMessage(error.message);
     } finally {

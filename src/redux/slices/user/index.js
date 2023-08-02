@@ -87,7 +87,6 @@ const authenticate = createAsyncThunk(
         },
       );
       if (resp.status === 200 || auth) {
-        console.log(resp.status, auth);
         return resp.data;
       }
       return thunkAPI.rejectWithValue(resp);

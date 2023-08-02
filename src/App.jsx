@@ -14,6 +14,7 @@ function App() {
       <Route path="/" element={<ProtectedRoute component={AppLayout} />}>
         <Route index element={<DetailPage />} />
         <Route path="/reserve" element={<DoctorPage />} />
+        <Route path="/detailsPage/:id" element={<DetailPage />} />
       </Route>
     </Routes>
   );

@@ -37,7 +37,7 @@ function CreateDoctor() {
       }, 3000);
       return;
     }
-    await dispatch(addDoctor(doctorData));
+    dispatch(addDoctor(doctorData));
     dispatch(fetchDoctors()); // Fetch doctor after new doctor creation
     setDoctorData({
       image: '',

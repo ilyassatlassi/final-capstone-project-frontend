@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const MainWrapper = ({ children }) => (
-  <div className="flex  h-screen w-full relative">
+  <div className="lg:flex  h-full w-full relative">
     {children}
   </div>
 );
