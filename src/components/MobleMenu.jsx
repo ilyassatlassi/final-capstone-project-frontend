@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Modal from 'react-modal';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { NAVLINKS, date } from '../constants/constants';
+import { NAVLINKS, ADMINLINKS, date } from '../constants/constants';
 import { logout } from '../redux/slices/user';
 
 Modal.setAppElement('#root');
@@ -12,6 +12,7 @@ const MobileMenu = ({ modalIsOpen, onModalClose }) => {
   const dispatch = useDispatch();
   const signedIn = useSelector((state) => state.user.signedIn);
   const navigate = useNavigate();
+  const role = useSelector((state) => state.user.user.role);
 
   useEffect(() => {
     if (!signedIn) navigate('auth/sign_in');
@@ -60,6 +61,18 @@ const MobileMenu = ({ modalIsOpen, onModalClose }) => {
                   {name}
                 </NavLink>
               ))}
+              {role === 'admin' && (
+            ADMINLINKS.map(({ name, route }) => (
+              <NavLink
+                key={name}
+                to={route}
+                className="block py-2 px-5 text-gray-600 hover:text-white hover:bg-[#97BF0E] transition-colors duration-500 uppercase font-bold"
+                style={({ isActive }) => ({ backgroundColor: isActive ? '#97bf0e' : '', color: isActive ? '#fff' : '' })}
+              >
+                {name}
+              </NavLink>
+            ))
+          )}
             </ul>
           </div>
           <div className="px-5">
