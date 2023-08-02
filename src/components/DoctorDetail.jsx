@@ -24,23 +24,24 @@ function DoctorDetail() {
 
   return (
     <div className=" w-full text-center h-screen relative">
+      {/* <h3 className="uppercase font-bold">Doctor Details</h3> */}
       <div className="flex flex-col">
-        {/* <h3 className="uppercase font-bold">Doctor Details</h3> */}
+        
 
           <Link to="/" className="lg:flex flex-col justify-end items-end hidden absolute bottom-[10%]">
             <button className="w-auto  bg-[#96bf01] hover:bg-green-500 text-white rounded-r-full mt-10 py-3 pr-3 pl-10 font-bold">
               <BiLeftArrow fill="white" />
             </button>
           </Link>
-        <div className="lg:flex justify-around lg:mt-20">
-          <div className="flex justify-center w-[500px]">
+        <div className="lg:flex justify-around lg:mt-20 p-2">
+          <div className="flex justify-center items-center lg:w-[500px]">
             <img
               src={doctor.image}
               alt={doctor.name}
               className="w-full lg:h-[400px] h-[300px] bg-white"
             />
           </div>
-          <div className="lg:w-1/4 md:mt-2">
+          <div className="lg:w-1/4 ">
             <div className="uppercase font-bold lg:text-center">{doctor.name}</div>
             <div className="text-center mt-2">{doctor.description}</div>
             <table className="table-auto w-full border-collapse mt-2">
@@ -66,14 +67,14 @@ function DoctorDetail() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <FaTwitter size={30} />
+                <FaTwitter size={30} color="#c7c6c6" />
               </a>
               <a
                 href={doctor.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <FaInstagram size={30} />
+                <FaInstagram size={30} color="#c7c6c6" />
 
               </a>
               <a
@@ -81,12 +82,12 @@ function DoctorDetail() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <FaFacebook size={30} />
+                <FaFacebook size={30} color="#c7c6c6" />
               </a>
             </div>
             <Link
               to="/"
-              className="flex  justify-center font-bold items-center gap-2 mt-10"
+              className="flex  justify-center font-bold items-center gap-2 mt-10 text-black"
             >
               DISCOVER MORE DOCTORS
               <IoIosArrowForward fill="black" />
