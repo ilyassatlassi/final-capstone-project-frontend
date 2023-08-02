@@ -31,10 +31,7 @@ const LoginPage = () => {
     try {
       dispatch(login({ email, password }));
       // navigate the user to home page if authenticated
-      console.log('Navigating to home page...');
       navigate('/');
-      console.log('Navigated to home page');
->>>>>>> 21dda3267a5c5d13422b97b06ac954bf8b659790
     } catch (error) {
       setErrorMessage(error.message);
     } finally {
