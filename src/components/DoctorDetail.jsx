@@ -9,14 +9,13 @@ import { fetchDoctor } from '../redux/slices/doctors';
 
 function DoctorDetail() {
   const dispatch = useDispatch();
-  const { Doctor } = useSelector((state) => state.doctors);
+  const { doctor, ready } = useSelector((state) => state.doctors);
   const { id } = useParams();
+
 
   useEffect(() => {
     dispatch(
-      fetchDoctor({
-        id: 61,
-      }),
+      fetchDoctor({id}),
     );
   }, [dispatch]);
 
@@ -26,54 +25,56 @@ function DoctorDetail() {
   //   );
   // }, [id]);
 
+    if (!ready) return <p>Loading...</p>;
+
   return (
-    <div className=" w-full text-center">
+    <div className=" w-full text-center h-screen relative">
       <div className="flex flex-col">
         {/* <h3 className="uppercase font-bold">Doctor Details</h3> */}
 
-        <div className="lg:flex justify-around lg:mt-20">
-          <Link to="/" className="lg:flex flex-col justify-end items-end hidden">
-            <button className="w-auto  bg-[#96bf01] hover:bg-green-500 text-white rounded-r-full mt-10 p-2 font-bold">
+          <Link to="/" className="lg:flex flex-col justify-end items-end hidden absolute bottom-[10%]">
+            <button className="w-auto  bg-[#96bf01] hover:bg-green-500 text-white rounded-r-full mt-10 py-3 pr-3 pl-10 font-bold">
               <BiLeftArrow fill="white" />
             </button>
           </Link>
-          <div className="flex justify-center lg:w-3/4">
+        <div className="lg:flex justify-around lg:mt-20">
+          <div className="flex justify-center w-[500px]">
             <img
-              src={Doctor.image}
-              alt={Doctor.name}
-              className="w-[500px] lg:h-[400px] bg-white"
+              src={doctor.image}
+              alt={doctor.name}
+              className="w-full lg:h-[400px] h-[300px] bg-white"
             />
           </div>
           <div className="lg:w-1/4 md:mt-2">
-            <div className="uppercase font-bold lg:text-center">{Doctor.name}</div>
-            <div className="text-center mt-2">{Doctor.description}</div>
+            <div className="uppercase font-bold lg:text-center">{doctor.name}</div>
+            <div className="text-center mt-2">{doctor.description}</div>
             <table className="table-auto w-full border-collapse mt-2">
               <tbody>
                 <tr className="bg-gray-100">
                   <td className="px-4 py-2 ">Fee</td>
-                  <td className="px-4 py-2">{Doctor.consultation_fee}</td>
+                  <td className="px-4 py-2">{doctor.consultation_fee}</td>
                 </tr>
                 <tr>
                   <td className="px-4 py-2">Specialization</td>
-                  <td className="px-4 py-2">{Doctor.specialization}</td>
+                  <td className="px-4 py-2">{doctor.specialization}</td>
                 </tr>
                 <tr className="bg-gray-100">
                   <td className="px-4 py-2">Hospital</td>
-                  <td className="px-4 py-2">{Doctor.hospital}</td>
+                  <td className="px-4 py-2">{doctor.hospital}</td>
                 </tr>
               </tbody>
             </table>
 
             <div className="flex flex-row justify-around mt-10">
               <a
-                href={Doctor.twitter}
+                href={doctor.twitter}
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <FaTwitter size={30} />
               </a>
               <a
-                href={Doctor.instagram}
+                href={doctor.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -81,7 +82,7 @@ function DoctorDetail() {
 
               </a>
               <a
-                href={Doctor.facebook}
+                href={doctor.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -89,7 +90,7 @@ function DoctorDetail() {
               </a>
             </div>
             <Link
-              to="/index"
+              to="/"
               className="flex  justify-center font-bold items-center gap-2 mt-10"
             >
               DISCOVER MORE DOCTORS

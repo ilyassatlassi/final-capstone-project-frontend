@@ -1,7 +1,5 @@
-/* eslint-disable import/no-extraneous-dependencies */
-/* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { login } from '../../redux/slices/user/index';
 import 'bulma/css/bulma.min.css';
@@ -42,13 +40,13 @@ const LoginPage = () => {
     }
   };
 
-  const user = useSelector((state) => state.user);
+  // const user = useSelector((state) => state.user);
 
-  useEffect(() => {
-    if (user.signedIn) {
-      navigate('/');
-    }
-  }, [user.signedIn, navigate]);
+  // useEffect(() => {
+  //   if (user.signedIn) {
+  //     navigate('/');
+  //   }
+  // }, [user.signedIn, navigate]);
 
   return (
     <>
@@ -68,7 +66,7 @@ const LoginPage = () => {
               {errorMessage && <p className="has-text-danger has-text-centered mb-4">{errorMessage}</p>}
               <form onSubmit={handleLogin}>
                 <div className="field">
-                  <label className="label">Email</label>
+                  <p className="label">Email</p>
                   <div className="control">
                     <input
                       className="input"
@@ -80,7 +78,7 @@ const LoginPage = () => {
                   </div>
                 </div>
                 <div className="field">
-                  <label className="label">Password</label>
+                  <p className="label">Password</p>
                   <div className="control">
                     <input
                       className="input"
