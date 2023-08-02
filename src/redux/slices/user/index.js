@@ -6,6 +6,7 @@ const initialState = {
   user: {},
   signedIn: false,
   error: null,
+  loginError: null,
   loading: false,
 };
 
@@ -86,7 +87,30 @@ const authenticate = createAsyncThunk(
           headers: auth,
         },
       );
-      if (resp.status === 200 || auth) {
+      if (resp.status === 200) {
+        return resp.data;
+      }
+      return thunkAPI.rejectWithValue(resp);
+    } catch (err) {
+      return thunkAPI.rejectWithValue(err.message);
+    }
+  },
+);
+
+const logout = createAsyncThunk(
+  'user/logout',
+  async (_, thunkAPI) => {
+    try {
+      let auth = localStorage.getItem('auth');
+      auth = JSON.parse(auth);
+
+      const resp = await axios.delete(
+        `${api.LOGOUT_ENDPOINT}`,
+        {
+          headers: auth,
+        },
+      );
+      if (resp.status === 200) {
         return resp.data;
       }
       return thunkAPI.rejectWithValue(resp);
@@ -110,11 +134,12 @@ const userSlice = createSlice({
       loading: false,
       error: null,
     }));
-    builder.addCase(register.rejected, (_, { payload }) => ({
+    builder.addCase(register.rejected, (state, { payload }) => ({
+      ...state,
       user: {},
       signedIn: false,
       loading: false,
-      error: payload,
+      loginError: payload,
     }));
     builder.addCase(login.pending, (state) => ({
       ...state,
@@ -126,11 +151,12 @@ const userSlice = createSlice({
       loading: false,
       error: null,
     }));
-    builder.addCase(login.rejected, (_, { payload }) => ({
+    builder.addCase(login.rejected, (state, { payload }) => ({
+      ...state,
       user: {},
       signedIn: false,
       loading: false,
-      error: payload,
+      loginError: payload,
     }));
     builder.addCase(authenticate.pending, (state) => ({
       ...state,
@@ -148,6 +174,21 @@ const userSlice = createSlice({
       loading: false,
       error: payload,
     }));
+    builder.addCase(logout.pending, (state) => ({
+      ...state,
+      loading: true,
+    }));
+    builder.addCase(logout.fulfilled, () => ({
+      user: {},
+      signedIn: false,
+      loading: false,
+      error: null,
+    }));
+    builder.addCase(logout.rejected, (state, { payload }) => ({
+      ...state,
+      loading: false,
+      error: payload,
+    }));
   },
 });
 
@@ -155,6 +196,7 @@ export {
   register,
   login,
   authenticate,
+  logout,
 };
 
 export default userSlice.reducer;

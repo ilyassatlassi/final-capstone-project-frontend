@@ -1,18 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { register } from '../redux/slices/user';
+import 'bulma/css/bulma.min.css';
 
 const Signup = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const signedIn = useSelector((state) => state.user.signedIn);
+  const error = useSelector((state) => state.user.loginError);
+
   const [errorMessage, setErrorMessage] = useState('');
+  const [loading, setLoading] = useState(false);
   const [inputState, setInputState] = useState({
     name: '',
     email: '',
     password: '',
   });
-  const dispatch = useDispatch();
-
-  const navigate = useNavigate();
 
   const handleInputChange = (e) => {
     setInputState((prev) => ({
@@ -23,16 +28,7 @@ const Signup = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    const isAnyFieldEmpty = Object.values(inputState).some(
-      (value) => value === '',
-    );
-    if (isAnyFieldEmpty) {
-      setErrorMessage('Please fill out all fields');
-      setTimeout(() => {
-        setErrorMessage('');
-      }, 3000);
-      return;
-    }
+    setLoading(true);
     dispatch(register({
       name: inputState.name,
       nickname: null,
@@ -41,13 +37,21 @@ const Signup = () => {
       role: 'user',
       image: null,
     }));
-    setInputState({});
-    navigate('/');
   };
 
-  // if (auth !== null) {
-  //   return <Navigate to="/" />;
-  // }
+  useEffect(() => {
+    if (signedIn) {
+      setLoading(false);
+      navigate('/');
+    }
+  }, [signedIn, navigate]);
+
+  useEffect(() => {
+    if (error) {
+      setErrorMessage(error.full_messages[0]);
+      setLoading(false);
+    }
+  }, [error]);
 
   return (
     <div className="max-w-screen-xl mx-auto px-5 pt-20">
@@ -63,6 +67,7 @@ const Signup = () => {
               placeholder="Enter your full name"
               onChange={handleInputChange}
               value={inputState.name}
+              required
             />
           </div>
           <div className="md:w-2/5 w-full mb-9">
@@ -74,6 +79,7 @@ const Signup = () => {
               placeholder="Enter your email"
               onChange={handleInputChange}
               value={inputState.email}
+              required
             />
           </div>
           <div className="md:w-2/5 w-full mb-9">
@@ -85,17 +91,19 @@ const Signup = () => {
               placeholder="Enter your password"
               onChange={handleInputChange}
               value={inputState.password}
+              required
             />
           </div>
           {errorMessage && (
           <p className="bg-red-600 font-bold mb-6 p-2 rounded shadow-lg">
-            Please fill out all fields
+            {errorMessage}
           </p>
           )}
           <div className="w-full md:w-2/5 lg:w-1/5">
             <button
               type="submit"
-              className="bg-[#97BF0E] py-2 px-5 rounded-md text-white w-full font-semibold text-lg"
+              className={`button is-primary ${loading && 'is-loading'}`}
+              disabled={loading}
             >
               Sign Up
             </button>

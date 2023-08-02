@@ -1,23 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { authenticate } from '../redux/slices/user';
+import Loading from './Loading';
 
 const ProtectedRoute = ({ component: Component }) => {
-  const [auth, setAuth] = useState(null);
   const loading = useSelector((state) => state.user.loading);
+  const signedIn = useSelector((state) => state.user.signedIn);
 
-  const dispatch = useDispatch();
-  useEffect(() => {
-    const data = dispatch(authenticate());
-    setAuth(data);
-  }, [dispatch]);
+  if (loading) return <Loading />;
 
-  if (loading) return <>loading</>;
-  if (auth) {
-    return <Component />;
-  }
+  if (signedIn) return <Component />;
 
   return <Navigate to="/auth/sign_in" />;
 };
