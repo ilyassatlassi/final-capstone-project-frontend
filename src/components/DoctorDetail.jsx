@@ -1,11 +1,11 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+/* eslint-disable */
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams, Link } from 'react-router-dom';
-import { fetchDoctor } from "../redux/slices/doctors";
-import { FaTwitter, FaInstagram, FaFacebook } from "react-icons/fa";
+import { FaTwitter, FaInstagram, FaFacebook } from 'react-icons/fa';
 import { IoIosArrowForward } from 'react-icons/io';
 import { BiLeftArrow } from 'react-icons/bi';
-
+import { fetchDoctor } from '../redux/slices/doctors';
 
 function DoctorDetail() {
   const dispatch = useDispatch();
@@ -16,7 +16,7 @@ function DoctorDetail() {
     dispatch(
       fetchDoctor({
         id: 61,
-      })
+      }),
     );
   }, [dispatch]);
 
@@ -32,20 +32,20 @@ function DoctorDetail() {
         {/* <h3 className="uppercase font-bold">Doctor Details</h3> */}
 
         <div className="lg:flex justify-around lg:mt-20">
-        <Link to="/" className = "lg:flex flex-col justify-end items-end hidden">
-              <button className="w-auto  bg-[#96bf01] hover:bg-green-500 text-white rounded-r-full mt-10 p-2 font-bold">
-                <BiLeftArrow fill="white" />
-              </button>
-            </Link>
+          <Link to="/" className="lg:flex flex-col justify-end items-end hidden">
+            <button className="w-auto  bg-[#96bf01] hover:bg-green-500 text-white rounded-r-full mt-10 p-2 font-bold">
+              <BiLeftArrow fill="white" />
+            </button>
+          </Link>
           <div className="flex justify-center lg:w-3/4">
             <img
-              src="https://img.freepik.com/free-photo/portrait-smiling-young-woman-doctor-healthcare-medical-worker-pointing-fingers-left-showing-clini_1258-88108.jpg?w=996&t=st=1690911597~exp=1690912197~hmac=3a4f5f061838832744eb3e61e5469ab1395d27e15ea84787339d4a6f9f07fbeb"
+              src={Doctor.image}
               alt={Doctor.name}
               className="w-[500px] lg:h-[400px] bg-white"
             />
           </div>
           <div className="lg:w-1/4 md:mt-2">
-            <div className="uppercase font-bold lg:text-right">{Doctor.name}</div>
+            <div className="uppercase font-bold lg:text-center">{Doctor.name}</div>
             <div className="text-center mt-2">{Doctor.description}</div>
             <table className="table-auto w-full border-collapse mt-2">
               <tbody>
@@ -70,7 +70,7 @@ function DoctorDetail() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <FaTwitter size={30}  />
+                <FaTwitter size={30} />
               </a>
               <a
                 href={Doctor.instagram}
@@ -78,7 +78,7 @@ function DoctorDetail() {
                 rel="noopener noreferrer"
               >
                 <FaInstagram size={30} />
-                
+
               </a>
               <a
                 href={Doctor.facebook}
@@ -89,12 +89,12 @@ function DoctorDetail() {
               </a>
             </div>
             <Link
-          to="/index"
-          className="flex  justify-center font-bold items-center gap-2 mt-10"
-        >
-          DISCOVER MORE DOCTORS
-          <IoIosArrowForward fill="black" />
-        </Link>
+              to="/index"
+              className="flex  justify-center font-bold items-center gap-2 mt-10"
+            >
+              DISCOVER MORE DOCTORS
+              <IoIosArrowForward fill="black" />
+            </Link>
             <button
               type="submit"
               className="w-auto lg:w-60  bg-[#96bf01] hover:bg-green-500 text-white rounded-full mt-10 p-2 font-bold"

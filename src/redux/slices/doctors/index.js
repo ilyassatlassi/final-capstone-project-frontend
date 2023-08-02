@@ -196,5 +196,7 @@ const doctorsSlice = createSlice({
   },
 });
 
-export { fetchDoctors, addDoctor, deleteDoctor, fetchDoctor };
+export {
+  fetchDoctors, addDoctor, deleteDoctor, fetchDoctor,
+};
 export default doctorsSlice.reducer;
