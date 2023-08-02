@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { BiLeftArrow, BiRightArrow } from 'react-icons/bi';
 import { fetchDoctors } from '../redux/slices/doctors';
 import DoctorCard from '../components/DoctorCard';
+import Loading from '../components/Loading';
 
 const HomePage = () => {
   const { doctors, ready } = useSelector((state) => state.doctors);
@@ -33,7 +34,7 @@ const HomePage = () => {
     };
   }, []);
 
-  if (!ready) return <p>Loading...</p>;
+  if (!ready) return <Loading />;
 
   const displayDoctors = doctors?.slice(carouselIndex, carouselIndex + displayedDoctors);
 
