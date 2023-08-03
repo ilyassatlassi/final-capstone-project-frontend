@@ -95,3 +95,15 @@ The goal of this project is to display the ability to implement a full stack web
 6.Hit enter in the keyboard
 
 7.navigate to the copy of your cloned repository using cd command
+
+### Prerequisites
+
+In order to run this project you need:
+
+- Basic knowdlenge of HTML, CSS, javascript and the code editor of your choice.
+- Basic knowlege of the computer operating system.
+
+### Setup <a name="setup"></a>
+
+Clone this repository to your desired folder:(https://github.com/ilyassatlassi/final-capstone-project-frontend.git)
+
