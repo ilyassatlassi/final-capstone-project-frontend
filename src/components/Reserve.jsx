@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { addReservation } from '../redux/slices/reservations';
+import { fetchDoctors } from '../redux/slices/doctors';
 
 function CreateReservation() {
   const dispatch = useDispatch();
@@ -12,6 +13,12 @@ function CreateReservation() {
     time: '',
     city: '',
   });
+
+  useEffect(() => {
+    dispatch(fetchDoctors());
+  },[dispatch]);
+
+  const { doctors } = useSelector((store) => store.doctors);
 
   const handleCreateNewReservation = async (e) => {
     e.preventDefault();
@@ -31,9 +38,9 @@ function CreateReservation() {
 
     setReservationData({
       selected: '',
-      city: '',
       date: '',
       time: '',
+      city: '',
     });
     setSuccessMessage('Reservation created successfully');
 
@@ -51,14 +58,6 @@ function CreateReservation() {
     });
   };
 
-//   const handleAvailabilityClick = (e) => {
-//     e.preventDefault();
-//     setReservationData({
-//       ...ReservationData,
-//       availability: !ReservationData.availability,
-//     });
-//   };
-
   return (
     <div className="flex items-center justify-center flex-1 py-10 px-10">
       <div className="h-auto w-full lg:w-[800px]  ">
@@ -69,13 +68,19 @@ function CreateReservation() {
         >
           <label className="" htmlFor>
             Select a Doctor:
-            <input
+            <select
               className="w-full border border-gray-300 rounded px-3 py-2"
               type="text"
               name="selected"
               value={ReservationData.selected}
               onChange={handleInputChange}
-            />
+            >
+              {
+                                doctors.map((doctor) => (
+                                  <option value={doctor.name} />
+                                ))
+                            }
+            </select>
           </label>
 
           <label className=" " htmlFor>
@@ -116,14 +121,14 @@ function CreateReservation() {
               type="submit"
               className="w-auto lg:w-60  bg-[#96bf01] hover:bg-green-500 text-white rounded py-2 font-bold"
             >
-              Reserve Reservation
+              Reserve Doctor
             </button>
           </div>
         </form>
         {successMessage && (
-          <p className="bg-green-200 font-bold mb-6 p-2 rounded shadow-lg">
-            {successMessage}
-          </p>
+        <p className="bg-green-200 font-bold mb-6 p-2 rounded shadow-lg">
+          {successMessage}
+        </p>
         )}
         {errorMessage && (
         <p className="bg-red-600 font-bold mb-6 p-2 rounded shadow-lg">
