@@ -133,34 +133,33 @@ You can deploy this project using: github pages or any host of your choice
 
 ## 👥 Authors <a name="authors"></a>
 
-### 👤 ** Ghulam Hyder Dar**:
+👤 **David-Lanzz**
+- GitHub: [@githubhandle](https://github.com/David-Lanzz/)
+- Twitter: [@twitterhandle](https://twitter.com/LanzzDavid)
+- LinkedIn: [LinkedIn](https://linkedin.com/in/david-lanzz)
 
-- GitHub: [Hyder](https://github.com/codeWithHyder)
-- LinkedIn: [Hyder](https://www.linkedin.com/in/ghulam-hyder-dar)
+👤 **Sabi Mantock**
 
-### 👤 **Walid Kabboussa**:
+- GitHub: [@SabiMantock](https://github.com/SabiMantock)
+- Twitter: [@iamsabimantock](https://twitter.com/iamsabimantock)
+- LinkedIn: [Sabi Mantock](https://linkedin.com/in/sabi-mantock)
 
-- GitHub: [Walid Kabboussa](https://github.com/Hisoka37)
-- LinkedIn: [Walid Kabboussa](https://www.linkedin.com/in/walidkb/)
+👤 **Precious Betine**
 
-### 👤 **Yosefgeda**:
+- GitHub: [@preciousbetine](https://github.com/preciousbetine)
+- Twitter: [@preciousbetine](https://twitter.com/preciousbetine)
+- LinkedIn: [preciousbetine](https://linkedin.com/in/preciousbetine)
 
-- GitHub: [Yosefgeda](https://github.com/Yosefgeda)
-- LinkedIn: [Yosefgeda](https://www.linkedin.com/in/yosefgeda)
+👤 **Ilyass Atlassi**
 
-👤 **Alexander Ssenyondo**
+- GitHub: [@githubhandle](https://github.com/ilyassatlassi)
+- Twitter: [@twitterhandle](https://twitter.com/ilyass_atlassi)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/ilyassatlassi/)
 
-- GitHub: [@alexiscyber14](https://github.com/alexiscyber14)
-- Instagram:[@Alexiscyber14](https://www.instagram.com/alexiscyber14/)
-- LinkedIn:[@Alex_Ssenyoondo](https://www.linkedin.com/in/alex-software/)
-- wellfound:[@alexiscyber14](https://angel.co/u/alexander-senyondo)
+### 👤 **Fahim Khan**:
+- GitHub: [@Fahim_on_GitHub](https://github.com/Fahim-Khan-P/Budget.git)
+- LinkedIn: [@Fahim_on_LinkedIn](https://www.linkedin.com/in/fahimkhan-p/)
 
-### 👤 **Grace Htet**:
-
-- GitHub: [Grace Htet](https://github.com/GraceHtet)
-- LinkedIn: [Grace Htet](https://linkedin.com/in/thirihtethtetaung)
-- Twitter: [Grace Htet](https://twitter.com/Grace_Htet4)
-- Angelist: [Grace Htet](https://wellfound.com/u/thiri-htet)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
