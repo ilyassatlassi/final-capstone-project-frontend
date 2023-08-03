@@ -197,7 +197,7 @@ function CreateDoctor() {
           <div className="flex justify-center items-center">
             <button
               type="submit"
-              className="w-auto lg:w-60  bg-[#96bf01] hover:bg-green-500 text-white rounded py-2 font-bold"
+              className="w-auto lg:w-60  bg-[#96bf01] hover:bg-green-500 text-white rounded p-2 font-bold"
             >
               Add Doctor
             </button>
