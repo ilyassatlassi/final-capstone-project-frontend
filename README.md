@@ -79,3 +79,19 @@ The goal of this project is to display the ability to implement a full stack web
 - [Live Demo](https://reserve-me-a-doc.onrender.com/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## 💻 Getting Started <a name="getting-started"></a>
+
+1.install git, if you already have git installed skip this step.
+
+2.open command terminal
+
+3.navigate to the directory you want remote directory to be cloned to
+
+4.go to the github and copy the url of the repository
+
+5.clone the repository by typing git clone the url copied in step 4
+
+6.Hit enter in the keyboard
+
+7.navigate to the copy of your cloned repository using cd command
