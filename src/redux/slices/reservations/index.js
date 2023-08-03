@@ -37,7 +37,8 @@ const addReservation = createAsyncThunk(
     city,
     time,
     date,
-    doctorId,
+    doctor_id,
+    user_id
   }, thunkAPI) => {
     try {
       let auth = localStorage.getItem('auth');
@@ -46,10 +47,11 @@ const addReservation = createAsyncThunk(
       const resp = await axios.post(
         `${api.RESERVATIONS_ENDPOINT}`,
         {
-          city,
-          time,
-          date,
-          doctor_id: doctorId,
+          city:city,
+          time:time,
+          date:date,
+          doctor_id: doctor_id,
+          user_id:user_id
         },
         {
           headers: auth,
@@ -58,7 +60,7 @@ const addReservation = createAsyncThunk(
       if (resp.status === 201) {
         return resp.data;
       }
-      return thunkAPI.rejectWithValue(resp.data);
+      return thunkAPI.rejectWithValue(resp);
     } catch (err) {
       return thunkAPI.rejectWithValue(err.response.data);
     }

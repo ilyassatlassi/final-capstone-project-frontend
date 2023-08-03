@@ -2,20 +2,24 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addReservation } from '../redux/slices/reservations';
 import { fetchDoctors } from '../redux/slices/doctors';
+import { fetchReservations } from '../redux/slices/reservations';
 
 function CreateReservation() {
   const dispatch = useDispatch();
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const {id} = useSelector((store)=> store.user)
   const [ReservationData, setReservationData] = useState({
-    selected: '',
+    doctor_id: '',
     date: '',
     time: '',
     city: '',
+    user_id: id,
   });
 
   useEffect(() => {
     dispatch(fetchDoctors());
+    dispatch(fetchReservations())
   }, [dispatch]);
 
   const { doctors } = useSelector((store) => store.doctors);
@@ -40,7 +44,7 @@ function CreateReservation() {
     }
 
     setReservationData({
-      selected: '',
+      doctor_id: '',
       date: '',
       time: '',
       city: '',
@@ -74,15 +78,15 @@ function CreateReservation() {
             <select
               className="w-full border border-gray-300 rounded px-3 py-2"
               type="text"
-              name="selected"
+              name="doctor_id"
               value={ReservationData.selected}
               onChange={handleInputChange}
             >
-              <option disabled autoFocus>Select a Doctor</option>
+              <option disabled selected>Select a Doctor</option>
               {
                                 doctors.map((doctor) =>{
                                   return (
-                                  <option value={doctor.name}>{doctor.name}</option>
+                                  <option value={doctor.id}>{doctor.name}</option>
                                 )})
                             }
             </select>
@@ -114,7 +118,7 @@ function CreateReservation() {
             What time do you want to meet with your Reservation?:
             <input
               className="w-full border border-gray-300 rounded px-3 py-2"
-              type="text"
+              type="time"
               name="time"
               value={ReservationData.time}
               onChange={handleInputChange}
