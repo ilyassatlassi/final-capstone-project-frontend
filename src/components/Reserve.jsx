@@ -1,35 +1,30 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addReservation } from '../redux/slices/reservations';
+import { addReservation, fetchReservations } from '../redux/slices/reservations';
 import { fetchDoctors } from '../redux/slices/doctors';
-import { fetchReservations } from '../redux/slices/reservations';
 
 function CreateReservation() {
   const dispatch = useDispatch();
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-  const {id} = useSelector((store)=> store.user)
+  const { id } = useSelector((store) => store.user);
   const [ReservationData, setReservationData] = useState({
-    doctor_id: '',
+    doctorId: '',
     date: '',
     time: '',
     city: '',
-    user_id: id,
+    userId: id,
   });
 
   useEffect(() => {
     dispatch(fetchDoctors());
-    dispatch(fetchReservations())
+    dispatch(fetchReservations());
   }, [dispatch]);
 
   const { doctors } = useSelector((store) => store.doctors);
 
   const handleCreateNewReservation = async (e) => {
     e.preventDefault();
-
-    const postReservation = () => {
-      dispatch(addReservation(ReservationData));
-    };
 
     const isAnyFieldEmpty = Object.values(ReservationData).some(
       (value) => value === '',
@@ -44,14 +39,12 @@ function CreateReservation() {
     }
 
     setReservationData({
-      doctor_id: '',
+      doctorId: '',
       date: '',
       time: '',
       city: '',
     });
     setSuccessMessage('Reservation created successfully');
-
-    // Clear success message after a delay (e.g., 3 seconds)
 
     setTimeout(() => {
       setSuccessMessage('');
@@ -78,16 +71,15 @@ function CreateReservation() {
             <select
               className="w-full border border-gray-300 rounded px-3 py-2"
               type="text"
-              name="doctor_id"
+              name="doctorId"
               value={ReservationData.selected}
               onChange={handleInputChange}
             >
               <option disabled selected>Select a Doctor</option>
               {
-                                doctors.map((doctor) =>{
-                                  return (
-                                  <option value={doctor.id}>{doctor.name}</option>
-                                )})
+                                doctors.map((doctor) => (
+                                  <option key={doctor.id} value={doctor.id}>{doctor.name}</option>
+                                ))
                             }
             </select>
           </label>
@@ -128,7 +120,7 @@ function CreateReservation() {
           <div className="flex justify-center items-center">
             <button
               type="submit"
-              onClick={()=> dispatch(addReservation(ReservationData))}
+              onClick={() => dispatch(addReservation(ReservationData))}
               className="w-auto lg:w-60  bg-[#96bf01] hover:bg-green-500 text-white rounded py-2 font-bold"
             >
               Reserve Doctor
