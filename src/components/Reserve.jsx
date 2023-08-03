@@ -38,6 +38,8 @@ function CreateReservation() {
       return;
     }
 
+    dispatch(addReservation(ReservationData));
+
     setReservationData({
       doctorId: '',
       date: '',
@@ -120,7 +122,7 @@ function CreateReservation() {
           <div className="flex justify-center items-center">
             <button
               type="submit"
-              onClick={() => dispatch(addReservation(ReservationData))}
+              onClick={() => handleCreateNewReservation()}
               className="w-auto lg:w-60  bg-[#96bf01] hover:bg-green-500 text-white rounded py-2 font-bold"
             >
               Reserve Doctor
