@@ -14,8 +14,7 @@ const DoctorCard = ({
 }) => (
   <div className="flex flex-col justify-center items-center">
     <Link to={`/detailsPage/${id}`} className="flex flex-col justify-center items-center">
-
-      <div className=" rounded-[50%] w-[200px] sm:w-[250px] mx-auto ">
+      <div className="rounded-[50%] w-[200px] sm:w-[250px] mx-auto ">
         <img src={image} alt="doctor" className="w-full h-[200px] sm:h-[250px] rounded-[50%] object-cover" />
       </div>
       <div className="mt-2 text-black">
@@ -42,7 +41,6 @@ const DoctorCard = ({
         className="border-2 p-2 rounded-[100%]"
       >
         <FaInstagram size={15} color="#c7c6c6" />
-
       </a>
       <a
         href={facebook}
