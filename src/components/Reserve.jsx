@@ -1,56 +1,70 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addReservation, fetchReservations } from '../redux/slices/reservations';
+import { useParams } from 'react-router-dom';
+import { ToastContainer, toast, Slide } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
+import { addReservation } from '../redux/slices/reservations';
 import { fetchDoctors } from '../redux/slices/doctors';
+import 'bulma/css/bulma.min.css';
 
 function CreateReservation() {
   const dispatch = useDispatch();
-  const [successMessage, setSuccessMessage] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
-  const { id } = useSelector((store) => store.user);
   const [ReservationData, setReservationData] = useState({
     doctorId: '',
     date: '',
     time: '',
     city: '',
-    userId: id,
   });
+  const { doctors } = useSelector((store) => store.doctors);
+  const { addSuccess, errors, ready } = useSelector((store) => store.reservations);
+  const [loading, setLoading] = useState(false);
+  const { id } = useParams();
 
   useEffect(() => {
-    dispatch(fetchDoctors());
-    dispatch(fetchReservations());
-  }, [dispatch]);
+    if (!doctors.length) dispatch(fetchDoctors());
+  }, [dispatch, doctors.length]);
 
-  const { doctors } = useSelector((store) => store.doctors);
+  useEffect(() => {
+    if (addSuccess && ReservationData.date.length) {
+      setReservationData({
+        doctorId: '',
+        date: '',
+        time: '',
+        city: '',
+      });
+      toast.success('Reservation successful!', {
+        position: toast.POSITION.BOTTOM_LEFT,
+        toastId: 'reserve-success',
+        transition: Slide,
+      });
+    }
+  }, [addSuccess]);
+
+  useEffect(() => {
+    if (errors) {
+      toast.error(errors?.errors[0] || 'An error occured!', {
+        position: toast.POSITION.BOTTOM_LEFT,
+        toastId: 'reserve-error',
+        transition: Slide,
+      });
+    }
+  }, [errors]);
+
+  useEffect(() => {
+    setLoading(!ready);
+  }, [ready]);
 
   const handleCreateNewReservation = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
-    const isAnyFieldEmpty = Object.values(ReservationData).some(
-      (value) => value === '',
-    );
-
-    if (isAnyFieldEmpty) {
-      setErrorMessage('Please fill out all fields');
-      setTimeout(() => {
-        setErrorMessage('');
-      }, 3000);
-      return;
-    }
-
-    dispatch(addReservation(ReservationData));
+    const doctorId = e.target.children[0].children[0].value;
 
     setReservationData({
-      doctorId: '',
-      date: '',
-      time: '',
-      city: '',
+      ...ReservationData,
+      doctorId,
     });
-    setSuccessMessage('Reservation created successfully');
-
-    setTimeout(() => {
-      setSuccessMessage('');
-    }, 3000);
+    dispatch(addReservation(ReservationData));
   };
 
   const handleInputChange = (e) => {
@@ -61,84 +75,79 @@ function CreateReservation() {
   };
 
   return (
-    <div className="flex items-center justify-center flex-1 py-10 px-10">
-      <div className="h-auto w-full lg:w-[800px]  ">
-        <h1 className="text-center text-[25px] font-bold "> Add Reservations</h1>
+    <div className="flex-1">
+      <ToastContainer />
+      <div className="h-auto w-full">
+        <h1 className="text-center mb-10 font-bold text-xl bg-[#97af0e] p-4 text-[26px]">RESERVE A DOCTOR</h1>
         <form
-          className="space-y-4 px-1 h-full"
+          className="lg:w-[800px] m-auto p-10 flex flex-col gap-6"
           onSubmit={handleCreateNewReservation}
         >
-          <label className="" htmlFor>
+          <label className="" htmlFor="doctorId">
             Select a Doctor:
             <select
-              className="w-full border border-gray-300 rounded px-3 py-2"
+              className="w-full border border-gray-300 rounded px-3 py-2 mt-3"
               type="text"
               name="doctorId"
-              value={ReservationData.selected}
-              onChange={handleInputChange}
+              value={id}
+              required
             >
-              <option disabled selected>Select a Doctor</option>
+              <option value={null}>{}</option>
               {
-                                doctors.map((doctor) => (
-                                  <option key={doctor.id} value={doctor.id}>{doctor.name}</option>
-                                ))
-                            }
+                doctors.map((doctor) => (
+                  <option key={doctor.id} value={doctor.id}>
+                    {doctor.name}
+                  </option>
+                ))
+              }
             </select>
           </label>
 
-          <label className=" " htmlFor>
-            What city are you currently located?:
+          <label className=" " htmlFor="city">
+            Enter your city:
             <input
-              className="w-full border border-gray-300 rounded px-3 py-2"
+              className="w-full border border-gray-300 rounded px-3 py-2 mt-3"
               type="text"
               name="city"
               value={ReservationData.city}
               onChange={handleInputChange}
+              required
             />
           </label>
 
-          <label className="" htmlFor>
-            What day do you want to meet with your Doctor?:
+          <label className="" htmlFor="date">
+            Select a date:
             <input
-              className="w-full border border-gray-300 rounded px-3 py-2"
+              className="w-full border border-gray-300 rounded px-3 py-2 mt-3"
               type="date"
               name="date"
               value={ReservationData.date}
               onChange={handleInputChange}
+              required
             />
           </label>
 
-          <label className="" htmlFor>
-            What time do you want to meet with your Reservation?:
+          <label className="" htmlFor="time">
+            Select a time:
             <input
-              className="w-full border border-gray-300 rounded px-3 py-2"
+              className="w-full border border-gray-300 rounded px-3 py-2 mt-3"
               type="time"
               name="time"
               value={ReservationData.time}
               onChange={handleInputChange}
+              required
             />
           </label>
 
           <div className="flex justify-center items-center">
             <button
               type="submit"
-              onClick={() => handleCreateNewReservation()}
-              className="w-auto lg:w-60  bg-[#96bf01] hover:bg-green-500 text-white rounded py-2 font-bold"
+              className={`button is-primary ${loading && 'is-loading'}`}
             >
               Reserve Doctor
             </button>
           </div>
         </form>
-        {successMessage && (
-        <p className="bg-green-200 font-bold mb-6 p-2 rounded shadow-lg">
-          {successMessage}
-        </p>
-        )}
-        {errorMessage && (
-        <p className="bg-red-600 font-bold mb-6 p-2 rounded shadow-lg">
-          Please fill out all fields
-        </p>
-        )}
       </div>
     </div>
   );

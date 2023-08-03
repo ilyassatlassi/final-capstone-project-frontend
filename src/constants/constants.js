@@ -1,8 +1,7 @@
 export const NAVLINKS = [
-  { name: 'Doctors', route: '/' },
-  { name: 'Add Doctor', route: 'add-doctor' },
+  { name: 'All Doctors', route: '/' },
   { name: 'My Reservations', route: 'my-reservations' },
-  { name: 'Reserve Doctor', route: 'reserve-doctor' },
+  { name: 'Reserve A Doctor', route: 'reserve-doctor' },
 ];
 
 export const ADMINLINKS = [

@@ -12,20 +12,18 @@ const DoctorCard = ({
   description,
   id,
 }) => (
-  <div className="flex flex-col justify-center items-center">
-    <Link to={`/detailsPage/${id}`} className="flex flex-col justify-center items-center">
-      <div className="rounded-[50%] w-[200px] sm:w-[250px] mx-auto ">
-        <img src={image} alt="doctor" className="w-full h-[200px] sm:h-[250px] rounded-[50%] object-cover" />
-      </div>
+  <div className="w-[100%] flex flex-col justify-center items-center sm:w-[30%]">
+    <Link to={`/detailsPage/${id}`} className="flex flex-col justify-center items-center gap-2">
+      <img src={image} alt="doctor" className="w-[200px] h-[200px] sm:h-[200px] rounded-[50%] object-cover object-top" />
       <div className="mt-2 text-black">
         <p className="font-bold">{name}</p>
       </div>
       <hr className="w-2/5 border-dotted border-[1px] border-[#eee] my-2" />
       <div>
-        <p className="text-[#c7c6c6]">{description}</p>
+        <p className="text-[#c7c6c6] text-center text-[14px]">{description}</p>
       </div>
     </Link>
-    <div className="flex mt-2 items-center gap-5">
+    <div className="flex mt-5 items-center gap-4">
       <a
         href={twitter}
         target="_blank"

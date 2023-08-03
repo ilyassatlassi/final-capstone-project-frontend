@@ -7,6 +7,8 @@ const initialState = {
   doctor: {},
   ready: false,
   errors: null,
+  addSuccess: false,
+  deleteSuccess: false,
 };
 const fetchDoctors = createAsyncThunk(
   'doctors/fetchDoctors',
@@ -166,12 +168,14 @@ const doctorsSlice = createSlice({
     builder.addCase(addDoctor.pending, (state) => ({
       ...state,
       ready: false,
+      addSuccess: false,
     }));
     builder.addCase(addDoctor.fulfilled, (state, { payload }) => ({
       ...state,
       doctors: [...state.doctors, payload],
       errors: null,
       ready: true,
+      addSuccess: true,
     }));
     builder.addCase(addDoctor.rejected, (state, { payload }) => ({
       ...state,
@@ -181,12 +185,14 @@ const doctorsSlice = createSlice({
     builder.addCase(deleteDoctor.pending, (state) => ({
       ...state,
       ready: false,
+      deleteSuccess: false,
     }));
     builder.addCase(deleteDoctor.fulfilled, (state, { payload }) => ({
       ...state,
       doctors: state.doctors.filter((doctor) => doctor.id !== payload.id),
       errors: null,
       ready: true,
+      deleteSuccess: true,
     }));
     builder.addCase(deleteDoctor.rejected, (state, { payload }) => ({
       ...state,

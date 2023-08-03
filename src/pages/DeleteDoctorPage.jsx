@@ -1,20 +1,55 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchDoctors } from '../redux/slices/doctors';
-import DeleteDoctor from '../components/DeleteDoctor';
+import { ToastContainer, toast, Slide } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
+import { fetchDoctors, deleteDoctor } from '../redux/slices/doctors';
 
 const DeleteDoctorPage = () => {
   const dispatch = useDispatch();
   const { doctors } = useSelector((state) => state.doctors);
+  const [id, setId] = useState(null);
+
+  const deleteDoc = (iden) => {
+    setId(iden);
+    dispatch(deleteDoctor({ id }));
+  };
 
   useEffect(() => {
     dispatch(fetchDoctors());
   }, [dispatch]);
 
+  const { deleteSuccess, errors, ready } = useSelector((store) => store.doctors);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (id && deleteSuccess) {
+      toast.success('Doctor deleted!', {
+        position: toast.POSITION.BOTTOM_LEFT,
+        toastId: 'delete-success',
+        transition: Slide,
+      });
+    }
+  }, [deleteSuccess]);
+
+  useEffect(() => {
+    if (errors) {
+      toast.error(errors.message || 'An error occured!', {
+        position: toast.POSITION.BOTTOM_LEFT,
+        toastId: 'delete-error',
+        transition: Slide,
+      });
+    }
+  }, [errors]);
+
+  useEffect(() => {
+    setLoading(!ready);
+  }, [ready]);
+
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8">
-      <h1 className="text-3xl font-extrabold text-gray-900 mb-8">List of Doctors</h1>
-      <div className="bg-white overflow-hidden shadow-xl rounded-lg">
+    <div className="w-full">
+      <ToastContainer />
+      <h1 className="text-center mb-10 font-bold text-xl bg-[#97af0e] p-4 text-[26px]">DELETE A DOCTOR</h1>
+      <div className="bg-white overflow-hidden rounded-lg">
         <div className="px-4 py-5 sm:p-6">
           <div className="overflow-x-auto">
             <table className="w-full table-auto divide-y divide-gray-200">
@@ -52,21 +87,23 @@ const DeleteDoctorPage = () => {
               <tbody className="bg-white divide-y divide-gray-200">
                 {doctors.map((doctor) => (
                   <tr key={doctor.id}>
-                    <td className="px-4 py-2 whitespace-wrap break-words text-sm font-medium text-gray-900">
+                    <td className="px-4 py-4 whitespace-wrap break-words text-sm font-medium text-gray-900">
                       {doctor.name}
                     </td>
-                    <td className="px-4 py-2 whitespace-wrap break-words text-sm text-gray-500">
+                    <td className="px-4 py-4 whitespace-wrap break-words text-sm text-gray-500">
                       {doctor.description}
                     </td>
-                    <td className="px-4 py-2 whitespace-wrap break-words text-sm text-gray-500">
+                    <td className="px-4 py-4 whitespace-wrap break-words text-sm text-gray-500">
                       $
                       {doctor.consultation_fee}
                     </td>
-                    <td className="px-4 py-2 whitespace-wrap break-words text-sm text-gray-500">
+                    <td className="px-4 py-4 whitespace-wrap break-words text-sm text-gray-500">
                       {doctor.hospital}
                     </td>
                     <td className="px-4 py-2 whitespace-wrap text-right text-sm font-medium">
-                      <DeleteDoctor id={doctor.id} />
+                      <button type="button" className={`button is-danger ${loading && 'is-loading'}`} onClick={() => { deleteDoc(doctor.id); }}>
+                        Delete
+                      </button>
                     </td>
                   </tr>
                 ))}

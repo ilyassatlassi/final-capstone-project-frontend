@@ -12,8 +12,8 @@ const HomePage = () => {
   const [displayedDoctors, setDisplayedDoctors] = useState(3);
 
   useEffect(() => {
-    dispatch(fetchDoctors());
-  }, [dispatch]);
+    if (!doctors.length) dispatch(fetchDoctors());
+  }, [dispatch, doctors.length]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -51,10 +51,9 @@ const HomePage = () => {
 
   return (
     <div className="relative w-full">
-      <div className="h-screen flex flex-col justify-center items-center">
-
-        <h3 className="text-center mb-24 font-bold text-xl">Doctors</h3>
-        <div className="flex overflow-hidden w-full items-center justify-center gap-20">
+      <div className="h-screen flex flex-col">
+        <h3 className="text-center mb-24 font-bold text-xl bg-[#97af0e] p-4 text-[26px]">ALL DOCTORS</h3>
+        <div className="flex flex-auto overflow-hidden w-full items-center justify-center gap-">
           {displayDoctors.map(({
             id, name,
             image,

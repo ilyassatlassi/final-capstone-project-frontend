@@ -1,7 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`First snapshot test 1`] = `
-<section
-  className="grid lg:grid-cols-3 h-screen gap-4 w-screen justify-center p-6 bg-[#97BFOE]"
-/>
-`;

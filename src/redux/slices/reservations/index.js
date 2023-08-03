@@ -4,8 +4,10 @@ import api from '../../api';
 
 const initialState = {
   reservations: [],
-  ready: false,
+  ready: true,
   errors: null,
+  addSuccess: false,
+  deleteSuccess: false,
 };
 
 const fetchReservations = createAsyncThunk(
@@ -38,7 +40,6 @@ const addReservation = createAsyncThunk(
     time,
     date,
     doctorId,
-    userId,
   }, thunkAPI) => {
     try {
       let auth = localStorage.getItem('auth');
@@ -51,7 +52,6 @@ const addReservation = createAsyncThunk(
           time,
           date,
           doctor_id: doctorId,
-          user_id: userId,
         },
         {
           headers: auth,
@@ -114,11 +114,13 @@ const reservationsSlice = createSlice({
     }));
     builder.addCase(addReservation.pending, (state) => ({
       ...state,
+      addSuccess: false,
       ready: false,
     }));
     builder.addCase(addReservation.fulfilled, (state, { payload }) => ({
       ...state,
       reservations: [...state.reservations, payload],
+      addSuccess: true,
       errors: null,
       ready: true,
     }));
@@ -130,12 +132,14 @@ const reservationsSlice = createSlice({
     builder.addCase(deleteReservation.pending, (state) => ({
       ...state,
       ready: false,
+      deleteSuccess: false,
     }));
     builder.addCase(deleteReservation.fulfilled, (state, { payload }) => ({
       ...state,
       reservations: state.reservations.filter((reservation) => reservation.id !== payload.id),
       errors: null,
       ready: true,
+      deleteSuccess: true,
     }));
     builder.addCase(deleteReservation.rejected, (state, { payload }) => ({
       ...state,

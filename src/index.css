@@ -72,15 +72,20 @@
 
 .app-loader {
   margin: auto;
-  border: 10px solid #eaf0f6;
+  border: 2px solid #eaf0f6;
   border-radius: 50%;
-  border-top: 10px solid #97bf10;
-  width: 100px;
-  height: 100px;
-  animation: spinner 2s linear infinite;
+  border-top: 2px solid #97bf10;
+  width: 60px;
+  height: 60px;
+  animation: spinner 0.3s linear infinite;
 }
 
 @keyframes spinner {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+img:hover {
+  transition: 0.3s all;
+  transform: scale(1.02);
 }

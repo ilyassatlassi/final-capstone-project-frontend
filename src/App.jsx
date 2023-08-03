@@ -19,6 +19,7 @@ function App() {
         <Route index element={<HomePage />} />
         <Route path="/add-doctor" element={<DoctorPage />} />
         <Route path="/detailsPage/:id" element={<DetailPage />} />
+        <Route path="/reserve-doctor/:id" element={<UserReserve />} />
         <Route path="/reserve-doctor" element={<UserReserve />} />
         <Route path="/my-reservations" element={<Reservations />} />
         <Route path="/delete-doctor" element={<DeleteDoctorPage />} />

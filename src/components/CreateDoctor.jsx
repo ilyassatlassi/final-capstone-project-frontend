@@ -1,64 +1,69 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { fetchDoctors, addDoctor } from '../redux/slices/doctors';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { ToastContainer, toast, Slide } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
+import { addDoctor } from '../redux/slices/doctors';
+import 'bulma/css/bulma.min.css';
 
 function CreateDoctor() {
   const dispatch = useDispatch();
-  const [successMessage, setSuccessMessage] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
   const [doctorData, setDoctorData] = useState({
     image: '',
     name: '',
     specialization: '',
     consultationFee: '',
     hospital: '',
-    availability: false,
+    availability: true,
     description: '',
     facebook: '',
     twitter: '',
     instagram: '',
   });
 
+  const { addSuccess, errors, ready } = useSelector((store) => store.doctors);
+  const [loading, setLoading] = useState(false);
+
   const handleCreateNewDoctor = async (e) => {
     e.preventDefault();
-
-    // Check if any field is empty
-
-    const isAnyFieldEmpty = Object.values(doctorData).some(
-      (value) => value === '',
-    );
-
-    // Display error message to fill out the empty field
-
-    if (isAnyFieldEmpty) {
-      setErrorMessage('Please fill out all fields');
-      setTimeout(() => {
-        setErrorMessage('');
-      }, 3000);
-      return;
-    }
     dispatch(addDoctor(doctorData));
-    dispatch(fetchDoctors()); // Fetch doctor after new doctor creation
-    setDoctorData({
-      image: '',
-      name: '',
-      specialization: '',
-      consultationFee: '',
-      hospital: '',
-      availability: '',
-      description: '',
-      facebook: '',
-      twitter: '',
-      instagram: '',
-    });
-    setSuccessMessage('Doctor created successfully');
-
-    // Clear success message after a delay (e.g., 3 seconds)
-
-    setTimeout(() => {
-      setSuccessMessage('');
-    }, 3000);
   };
+
+  useEffect(() => {
+    if (addSuccess && doctorData.name.length) {
+      toast.success('Doctor added!', {
+        position: toast.POSITION.BOTTOM_LEFT,
+        toastId: 'reserve-success',
+        transition: Slide,
+      });
+
+      setDoctorData({
+        image: '',
+        name: '',
+        specialization: '',
+        consultationFee: '',
+        hospital: '',
+        availability: true,
+        description: '',
+        facebook: '',
+        twitter: '',
+        instagram: '',
+      });
+    }
+  }, [addSuccess]);
+
+  useEffect(() => {
+    setLoading(!ready);
+  }, [ready]);
+
+  useEffect(() => {
+    if (errors) {
+      toast.error(errors.errors[0] || 'An error occured!', {
+        position: toast.POSITION.BOTTOM_LEFT,
+        toastId: 'reserve-error',
+        transition: Slide,
+      });
+    }
+  }, [errors]);
 
   const handleInputChange = (e) => {
     setDoctorData({
@@ -67,152 +72,137 @@ function CreateDoctor() {
     });
   };
 
-  const handleAvailabilityClick = (e) => {
-    e.preventDefault();
-    setDoctorData({
-      ...doctorData,
-      availability: !doctorData.availability,
-    });
-  };
-
   return (
-    <div className="flex items-center justify-center flex-1 py-10 px-10">
-      <div className="h-auto w-full lg:w-[800px]  ">
-        <h1 className="text-center text-[25px] font-bold "> Add Doctors</h1>
+    <div className="flex-1 h-screen">
+      <ToastContainer />
+      <div className="w-full">
+        <h1 className="text-center mb-10 font-bold text-xl bg-[#97af0e] p-4 text-[26px]">ADD A DOCTOR</h1>
         <form
-          className="space-y-4 px-1 h-full"
+          className="lg:w-[800px] m-auto p-10 flex flex-col gap-6"
           onSubmit={handleCreateNewDoctor}
         >
-          <label className="" htmlFor>
+          <label className="" htmlFor="name">
             Name:
             <input
-              className="w-full border border-gray-300 rounded px-3 py-2"
+              className="w-full border border-gray-300 rounded px-3 py-2 mt-3"
               type="text"
               name="name"
               value={doctorData.name}
               onChange={handleInputChange}
+              required
             />
           </label>
 
-          <label className=" " htmlFor>
+          <label className=" " htmlFor="description">
             Description:
             <textarea
-              className="w-full border border-gray-300 rounded px-3 py-2"
+              className="w-full border border-gray-300 rounded px-3 py-2 mt-3"
               type="text"
               name="description"
               value={doctorData.description}
               onChange={handleInputChange}
+              required
             />
           </label>
 
-          <label className="" htmlFor>
-            Picture:
+          <label className="" htmlFor="photo">
+            Enter photo URL:
             <input
               placeholder="Enter photo URL here"
-              className="w-full border border-gray-300 rounded px-3 py-2"
+              className="w-full border border-gray-300 rounded px-3 py-2 mt-3"
               type="text"
               name="image"
               value={doctorData.image}
               onChange={handleInputChange}
+              required
             />
           </label>
 
-          <label className="" htmlFor>
-            ConsultationFee:
+          <label className="" htmlFor="fee">
+            Enter consultation fee (USD):
             <input
               placeholder="Enter price here"
-              className="w-full border border-gray-300 rounded px-3 py-2"
-              type="text"
+              className="w-full border border-gray-300 rounded px-3 py-2 mt-3"
+              type="number"
               name="consultationFee"
               value={doctorData.consultationFee}
               onChange={handleInputChange}
+              required
             />
           </label>
 
-          <label className="" htmlFor>
-            Specialization:
+          <label className="" htmlFor="spec">
+            Enter specialization:
             <input
-              className="w-full border border-gray-300 rounded px-3 py-2"
+              className="w-full border border-gray-300 rounded px-3 py-2 mt-3"
               type="text"
               name="specialization"
               value={doctorData.specialization}
               onChange={handleInputChange}
+              required
             />
           </label>
 
-          <label className="" htmlFor>
-            Hospital:
+          <label className="" htmlFor="hospital">
+            Enter hospital name:
             <input
-              className="w-full border border-gray-300 rounded px-3 py-2"
+              className="w-full border border-gray-300 rounded px-3 py-2 mt-3"
               type="text"
               name="hospital"
               value={doctorData.hospital}
               onChange={handleInputChange}
+              required
             />
           </label>
-          <label className="flex" htmlFor>
-            Availability:
-            <div className=" bg-gray-200 cursor-pointer relative w-16 h-8 rounded-full ml-2">
-              <input type="checkbox" className="sr-only peer" checked={doctorData.availability} onChange={handleAvailabilityClick} />
-              <span className=" w-2/5 h-4/5 bg-[#96bf01] absolute rounded-full left-1 top-1 peer-checked:bg-green-500 peer-checked:left-9" />
-            </div>
-          </label>
 
-          <label className="" htmlFor>
+          <label className="" htmlFor="fb">
             Facebook:
             <input
               placeholder="Enter facebook URL here"
-              className="w-full border border-gray-300 rounded px-3 py-2"
+              className="w-full border border-gray-300 rounded px-3 py-2 mt-3"
               type="text"
               name="facebook"
               value={doctorData.facebook}
               onChange={handleInputChange}
+              required
             />
           </label>
 
-          <label className=" " htmlFor>
+          <label className=" " htmlFor="insta">
             Instagram:
             <input
               placeholder="Enter instagram URL here"
-              className="w-full border border-gray-300 rounded px-3 py-2"
+              className="w-full border border-gray-300 rounded px-3 py-2 mt-3"
               type="text"
               name="instagram"
               value={doctorData.instagram}
               onChange={handleInputChange}
+              required
             />
           </label>
 
-          <label className=" " htmlFor>
+          <label className=" " htmlFor="twitter">
             Twitter:
             <input
               placeholder="Enter twitter URL here"
-              className="w-full border border-gray-300 rounded px-3 py-2"
+              className="w-full border border-gray-300 rounded px-3 py-2 mt-3"
               type="text"
               name="twitter"
               value={doctorData.twitter}
               onChange={handleInputChange}
+              required
             />
           </label>
 
           <div className="flex justify-center items-center">
             <button
               type="submit"
-              className="w-auto lg:w-60  bg-[#96bf01] hover:bg-green-500 text-white rounded p-2 font-bold"
+              className={`button is-primary ${loading && 'is-loading'}`}
             >
               Add Doctor
             </button>
           </div>
         </form>
-        {successMessage && (
-          <p className="bg-green-200 font-bold mb-6 p-2 rounded shadow-lg">
-            {successMessage}
-          </p>
-        )}
-        {errorMessage && (
-        <p className="bg-red-600 font-bold mb-6 p-2 rounded shadow-lg">
-          Please fill out all fields
-        </p>
-        )}
       </div>
     </div>
   );

@@ -30,6 +30,7 @@ const register = createAsyncThunk(
           expiry: resp.headers.expiry,
           uid: resp.headers.uid,
           client: resp.headers.client,
+          Authorization: resp.headers.getAuthorization(),
         };
 
         localStorage.setItem('auth', JSON.stringify(auth));
@@ -62,6 +63,7 @@ const login = createAsyncThunk(
           expiry: resp.headers.expiry,
           uid: resp.headers.uid,
           client: resp.headers.client,
+          Authorization: resp.headers.getAuthorization(),
         };
 
         localStorage.setItem('auth', JSON.stringify(auth));
@@ -111,6 +113,7 @@ const logout = createAsyncThunk(
         },
       );
       if (resp.status === 200) {
+        localStorage.removeItem('auth');
         return resp.data;
       }
       return thunkAPI.rejectWithValue(resp);
@@ -129,7 +132,7 @@ const userSlice = createSlice({
       loading: true,
     }));
     builder.addCase(register.fulfilled, (_, { payload }) => ({
-      user: { payload },
+      user: payload,
       signedIn: true,
       loading: false,
       error: null,

@@ -1,19 +1,30 @@
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchReservations } from '../redux/slices/reservations';
+import { fetchReservations, deleteReservation } from '../redux/slices/reservations';
 import { fetchDoctors } from '../redux/slices/doctors';
+import Loading from './Loading';
 
 const MyReservations = () => {
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchReservations());
-    dispatch(fetchDoctors());
-  }, [dispatch]);
-  const newReservationArray = [];
+
+  const reservationsReady = useSelector((store) => store.reservations.ready);
+  const doctorsReady = useSelector((store) => store.doctors.ready);
   const { reservations } = useSelector((store) => store.reservations);
   const { doctors } = useSelector((store) => store.doctors);
-  reservations.map((reservation) => {
-    doctors.map((doctor) => {
+
+  useEffect(() => {
+    if (!reservations.length) dispatch(fetchReservations());
+    if (!doctors.length) dispatch(fetchDoctors());
+  }, [dispatch, reservations.length, doctors.length]);
+
+  const handleDeleteReservation = async (id) => {
+    dispatch(deleteReservation({ id }));
+  };
+
+  const newReservationArray = [];
+  reservations.forEach((reservation) => {
+    doctors.forEach((doctor) => {
       if (reservation.doctor_id === doctor.id) {
         const dateObject = new Date(reservation.time);
         const timeOptions = {
@@ -26,7 +37,6 @@ const MyReservations = () => {
           time: formattedTime,
           date: reservation.date,
           city: reservation.city,
-          doctorImage: doctor.image,
           id: reservation.id,
         };
         newReservationArray.push(newReservationObject);
@@ -34,39 +44,65 @@ const MyReservations = () => {
     });
   });
 
+  if (!reservationsReady || !doctorsReady) return <Loading />;
+
   return (
-    <section className="grid lg:grid-cols-3 h-screen gap-4 w-screen justify-center p-6 bg-[#97BFOE]">
-      {
-      newReservationArray.map((reservation) => (
-        <ul key={reservation.id} className="h-1/2 w-full">
-          <li className="h-full w-full">
-            <img className="h-full w-full rounded-xl" src={reservation.doctorImage} alt={reservation.doctor} />
-          </li>
-          <li className="flex gap-2">
-            <h3 className="font-bold">
-              Doctor&apos;s Name:
-            </h3>
-            {reservation.doctor}
-          </li>
-          <li className="flex gap-2">
-            <h3 className="font-bold">City:</h3>
-            {' '}
-            {reservation.city}
-          </li>
-          <li className="flex gap-2">
-            <h3 className="font-bold">Date of Meeting:</h3>
-            {' '}
-            {reservation.date}
-          </li>
-          <li className="flex gap-2">
-            <h3 className="font-bold">Time of Meeting:</h3>
-            {' '}
-            {reservation.time}
-          </li>
-        </ul>
-      ))
-}
-    </section>
+    <div className="w-full">
+      <h1 className="text-center mb-10 font-bold text-xl bg-[#97af0e] p-4 text-[26px]">MY RESERVATIONS</h1>
+      <ul className="w-100">
+        {
+          newReservationArray.map((reservation, index) => (
+            <li key={reservation.id} className="bg-yellow-100 mb-3 p-5">
+              <h2 className="text-[35px] font-bold">
+                {index + 1}
+                .
+              </h2>
+              <h3 className="flex gap-2">
+                <b>Appointment with:</b>
+                <span>
+                  {reservation.doctor}
+                </span>
+              </h3>
+              <h3 className="flex gap-2">
+                <b>City:</b>
+                <span>
+                  {reservation.city}
+                </span>
+              </h3>
+              <h3 className="flex gap-2">
+                <b>Appointment Date:</b>
+                <span>
+                  {reservation.date}
+                </span>
+              </h3>
+              <h3 className="flex gap-2">
+                <b>Appointment Time:</b>
+                <span>
+                  {reservation.time}
+                </span>
+              </h3>
+              <button
+                onClick={() => handleDeleteReservation(reservation.id)}
+                type="button"
+                className="mt-3 bg-red-400 px-10 py-2 text-white"
+              >
+                Delete
+              </button>
+            </li>
+          ))
+        }
+        {
+          newReservationArray.length === 0 && (
+            <li className="bg-yellow-100 p-5">
+              <h2 className="text-[20px] mb-3 font-bold">
+                You have no reservations yet.
+              </h2>
+              <Link to="/reserve-doctor">Reserve a doctor</Link>
+            </li>
+          )
+        }
+      </ul>
+    </div>
   );
 };
 

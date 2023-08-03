@@ -38,57 +38,62 @@ const LoginPage = () => {
 
   return (
     <>
-      <div className="columns is-centered mt-6">
-        <div className="column is-half">
-          <div className="card">
-            <div className="card-content">
-              <h1 className="title is-4 has-text-centered mb-4">Log In Page</h1>
-              {error && <p className="has-text-danger has-text-centered mb-4">{error}</p>}
-              <form onSubmit={handleLogin}>
-                <div className="field">
-                  <p className="label">Email</p>
-                  <div className="control">
-                    <input
-                      className="input"
-                      type="email"
-                      placeholder="Enter your email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      required
-                    />
-                  </div>
+      <div className="flex flex-col">
+        <header className="flex gap-3 p-5 items-center">
+          <img className="w-[40px] h-[40px]" alt="" src="/images/logo.jpg" />
+          <div>
+            <h1 className="text-[#97BF0E] text-[25px]">DOC CARE</h1>
+            <p className="m-0 ">Welcome to Doc Care! Please login to proceed...</p>
+          </div>
+        </header>
+        <div className="column is-half m-auto pt-6">
+          <div>
+            <h1 className="mb-5 text-[24px]">Enter your details to login</h1>
+            {error && <p className="has-text-danger has-text-centered mb-4">{error}</p>}
+            <form onSubmit={handleLogin}>
+              <div className="field">
+                <p className="font-bold text-[#97BF0E] mb-1">Email</p>
+                <div className="control">
+                  <input
+                    className="input mb-2"
+                    type="email"
+                    placeholder="Enter your email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                  />
                 </div>
-                <div className="field">
-                  <p className="label">Password</p>
-                  <div className="control">
-                    <input
-                      className="input"
-                      type="password"
-                      placeholder="Enter your password"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      required
-                    />
-                  </div>
+              </div>
+              <div className="field">
+                <p className="font-bold text-[#97BF0E] mb-1">Password</p>
+                <div className="control">
+                  <input
+                    className="input mb-2"
+                    type="password"
+                    placeholder="Enter your password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                  />
                 </div>
-                <div className="field is-grouped is-grouped-centered">
-                  <div className="control">
-                    <button
-                      className={`button is-primary ${isLoading && 'is-loading'}`}
-                      disabled={isLoading}
-                      type="submit"
-                    >
-                      Log In
-                    </button>
-                  </div>
-                  <div className="control">
-                    <Link className="button is-light" to="/auth/register">
-                      Sign Up
-                    </Link>
-                  </div>
+              </div>
+              <div className="field is-grouped is-grouped-centered">
+                <div className="control">
+                  <button
+                    className={`button is-primary ${isLoading && 'is-loading'}`}
+                    disabled={isLoading}
+                    type="submit"
+                  >
+                    Log In
+                  </button>
                 </div>
-              </form>
-            </div>
+                <div className="control">
+                  <Link className="button is-light" to="/auth/register">
+                    Sign Up
+                  </Link>
+                </div>
+              </div>
+            </form>
           </div>
         </div>
       </div>
