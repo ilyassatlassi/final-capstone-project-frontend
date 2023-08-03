@@ -38,6 +38,7 @@ const addReservation = createAsyncThunk(
     time,
     date,
     doctorId,
+    userId,
   }, thunkAPI) => {
     try {
       let auth = localStorage.getItem('auth');
@@ -50,6 +51,7 @@ const addReservation = createAsyncThunk(
           time,
           date,
           doctor_id: doctorId,
+          user_id: userId,
         },
         {
           headers: auth,
@@ -58,7 +60,7 @@ const addReservation = createAsyncThunk(
       if (resp.status === 201) {
         return resp.data;
       }
-      return thunkAPI.rejectWithValue(resp.data);
+      return thunkAPI.rejectWithValue(resp);
     } catch (err) {
       return thunkAPI.rejectWithValue(err.response.data);
     }

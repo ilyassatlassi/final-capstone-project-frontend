@@ -12,7 +12,6 @@ function DoctorDetail() {
   const { doctor, ready } = useSelector((state) => state.doctors);
   const { id } = useParams();
 
-
   useEffect(() => {
     dispatch(
       fetchDoctor({id}),
