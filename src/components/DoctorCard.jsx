@@ -64,5 +64,4 @@ DoctorCard.propTypes = {
   id: PropTypes.number.isRequired,
 };
 
-
 export default DoctorCard;
