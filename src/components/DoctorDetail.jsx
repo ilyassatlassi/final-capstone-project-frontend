@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { FaTwitter, FaInstagram, FaFacebook } from 'react-icons/fa';
 import { IoIosArrowForward } from 'react-icons/io';
 import { BiLeftArrow } from 'react-icons/bi';
 import Loading from './Loading';
 
 function DoctorDetail() {
+  const navigate = useNavigate();
   const { ready, doctors } = useSelector((state) => state.doctors);
   const [doctor, setDoctor] = useState({});
   const { id } = useParams();
@@ -85,6 +86,7 @@ function DoctorDetail() {
             <button
               type="submit"
               className="w-auto lg:w-60  bg-[#96bf01] hover:bg-green-500 text-white rounded-full my-10 p-2 px-6 font-bold"
+              onClick={() => { navigate(`/reserve-doctor/${id}`); }}
             >
               Reserve
             </button>

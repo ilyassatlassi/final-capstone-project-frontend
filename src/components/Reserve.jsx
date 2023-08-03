@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import { ToastContainer, toast, Slide } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 import { addReservation } from '../redux/slices/reservations';
@@ -17,6 +18,7 @@ function CreateReservation() {
   const { doctors } = useSelector((store) => store.doctors);
   const { addSuccess, errors, ready } = useSelector((store) => store.reservations);
   const [loading, setLoading] = useState(false);
+  const { id } = useParams();
 
   useEffect(() => {
     if (!doctors.length) dispatch(fetchDoctors());
@@ -87,11 +89,15 @@ function CreateReservation() {
               className="w-full border border-gray-300 rounded px-3 py-2 mt-3"
               type="text"
               name="doctorId"
+              value={id}
               required
             >
+              <option value={null}>{}</option>
               {
                 doctors.map((doctor) => (
-                  <option key={doctor.id} value={doctor.id}>{doctor.name}</option>
+                  <option key={doctor.id} value={doctor.id}>
+                    {doctor.name}
+                  </option>
                 ))
               }
             </select>
