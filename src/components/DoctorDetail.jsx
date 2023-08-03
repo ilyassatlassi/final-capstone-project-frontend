@@ -6,20 +6,11 @@ import { FaTwitter, FaInstagram, FaFacebook } from 'react-icons/fa';
 import { IoIosArrowForward } from 'react-icons/io';
 import { BiLeftArrow } from 'react-icons/bi';
 import { fetchDoctor } from '../redux/slices/doctors';
-import { addReservation } from '../redux/slices/reservations';
 
 function DoctorDetail() {
   const dispatch = useDispatch();
   const { doctor, ready } = useSelector((state) => state.doctors);
   const { id } = useParams();
-
-  const postReservation = ()=> {
-    dispatch(addReservation({ city:"city",
-      time:"07:02:15",
-      date:"2023-05-05",
-      doctorId:1,}))
-  }
-
 
   useEffect(() => {
     dispatch(
@@ -106,7 +97,6 @@ function DoctorDetail() {
             </Link>
             <button
               type="submit"
-              onClick={() => postReservation()}
               className="w-auto lg:w-60  bg-[#96bf01] hover:bg-green-500 text-white rounded-full mt-10 p-2 font-bold"
             >
               Reservation

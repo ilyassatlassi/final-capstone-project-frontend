@@ -16,12 +16,16 @@ function CreateReservation() {
 
   useEffect(() => {
     dispatch(fetchDoctors());
-  },[dispatch]);
+  }, [dispatch]);
 
   const { doctors } = useSelector((store) => store.doctors);
 
   const handleCreateNewReservation = async (e) => {
     e.preventDefault();
+
+    const postReservation = () => {
+      dispatch(addReservation(ReservationData));
+    };
 
     const isAnyFieldEmpty = Object.values(ReservationData).some(
       (value) => value === '',
@@ -34,7 +38,6 @@ function CreateReservation() {
       }, 3000);
       return;
     }
-    dispatch(addReservation(ReservationData));
 
     setReservationData({
       selected: '',
@@ -75,17 +78,19 @@ function CreateReservation() {
               value={ReservationData.selected}
               onChange={handleInputChange}
             >
+              <option disabled autoFocus>Select a Doctor</option>
               {
-                                doctors.map((doctor) => (
-                                  <option value={doctor.name} />
-                                ))
+                                doctors.map((doctor) =>{
+                                  return (
+                                  <option value={doctor.name}>{doctor.name}</option>
+                                )})
                             }
             </select>
           </label>
 
           <label className=" " htmlFor>
             What city are you currently located?:
-            <textarea
+            <input
               className="w-full border border-gray-300 rounded px-3 py-2"
               type="text"
               name="city"
@@ -119,6 +124,7 @@ function CreateReservation() {
           <div className="flex justify-center items-center">
             <button
               type="submit"
+              onClick={()=> dispatch(addReservation(ReservationData))}
               className="w-auto lg:w-60  bg-[#96bf01] hover:bg-green-500 text-white rounded py-2 font-bold"
             >
               Reserve Doctor
