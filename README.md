@@ -133,3 +133,82 @@ You can deploy this project using: github pages or any host of your choice
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+## 👥 Authors <a name="authors"></a>
+
+### 👤 ** Ghulam Hyder Dar**:
+
+- GitHub: [Hyder](https://github.com/codeWithHyder)
+- LinkedIn: [Hyder](https://www.linkedin.com/in/ghulam-hyder-dar)
+
+### 👤 **Walid Kabboussa**:
+
+- GitHub: [Walid Kabboussa](https://github.com/Hisoka37)
+- LinkedIn: [Walid Kabboussa](https://www.linkedin.com/in/walidkb/)
+
+### 👤 **Yosefgeda**:
+
+- GitHub: [Yosefgeda](https://github.com/Yosefgeda)
+- LinkedIn: [Yosefgeda](https://www.linkedin.com/in/yosefgeda)
+
+👤 **Alexander Ssenyondo**
+
+- GitHub: [@alexiscyber14](https://github.com/alexiscyber14)
+- Instagram:[@Alexiscyber14](https://www.instagram.com/alexiscyber14/)
+- LinkedIn:[@Alex_Ssenyoondo](https://www.linkedin.com/in/alex-software/)
+- wellfound:[@alexiscyber14](https://angel.co/u/alexander-senyondo)
+
+### 👤 **Grace Htet**:
+
+- GitHub: [Grace Htet](https://github.com/GraceHtet)
+- LinkedIn: [Grace Htet](https://linkedin.com/in/thirihtethtetaung)
+- Twitter: [Grace Htet](https://twitter.com/Grace_Htet4)
+- Angelist: [Grace Htet](https://wellfound.com/u/thiri-htet)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## 🔭 Future Features <a name="future-features"></a>
+
+- [ ] **Responsive for all devices**
+- [ ] **Adding additional pages**
+- [ ] **Impelment animations and transitions**
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## 🤝 Contributing <a name="contributing"></a>
+
+Contributions, issues, and feature requests are welcome!
+
+Feel free to check the [issues page]().
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## ⭐️ Show your support <a name="support"></a>
+
+If you like this project please give it a ⭐️.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## 🙏 Acknowledgments <a name="acknowledgements"></a>
+
+- [the whole Microverse Community](https://www.microverse.org/)
+- [The template design Owner](https://www.behance.net/gallery/26425031/Vespa-Responsive-Redesign)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## ❓ FAQ (OPTIONAL) <a name="faq"></a>
+
+- **how will i setup this project in local machine**
+
+  - run the following command in the terminal: git clone (https://github.com/ilyassatlassi/final-capstone-project-frontend.git)
+
+- **which code editor should i use**
+
+  - You can use any editor of your choice but i recommend vs code.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## 📝 License <a name="license"></a>
+
+This project is [MIT](./LICENSE) licensed.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
