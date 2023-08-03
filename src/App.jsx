@@ -15,7 +15,7 @@ function App() {
       <Route path="/auth/register" element={<Signup />} />
       <Route path="/" element={<ProtectedRoute component={AppLayout} />}>
         <Route index element={<HomePage />} />
-        <Route path="/reserve" element={<DoctorPage />} />
+        <Route path="/add-doctor" element={<DoctorPage />} />
         <Route path="/detailsPage/:id" element={<DetailPage />} />
         <Route path="/delete-doctor" element={<DeleteDoctorPage />} />
       </Route>
