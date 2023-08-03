@@ -107,3 +107,29 @@ In order to run this project you need:
 
 Clone this repository to your desired folder:(https://github.com/ilyassatlassi/final-capstone-project-frontend.git)
 
+# Usage <a name="usage"></a>
+
+## note before running this project install and run the back end first
+
+follow this [link](https://github.com/preciousbetine/microverse-final-capstone-project.git) to run the back end
+
+## To run the project, execute the following command:
+
+### npm install
+
+to install all the dependencies used in the project
+
+### npm run build
+
+to build this project from the source folder using webpack
+
+### npm run start
+
+in order to start a server and deploy the project localy
+
+### Deployment <a name="triangular_flag_on_post-deployment"></a>
+
+You can deploy this project using: github pages or any host of your choice
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
