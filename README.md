@@ -24,3 +24,9 @@
 - [🙏 Acknowledgements](#acknowledgements)
 - [❓ FAQ (OPTIONAL)](#faq)
 - [📝 License](#license)
+
+# Doctore-frontend📖 <a name="about-project"></a>
+
+**Doctore-frontend** Is a webpage that displays list of Doctores with their biography from the back end api [Doctore-back-end](https://github.com/preciousbetine/microverse-final-capstone-project)
+
+The goal of this project is to display the ability to implement a full stack web application by connecting the back end to the front end
