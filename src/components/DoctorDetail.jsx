@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, Link } from 'react-router-dom';
@@ -13,26 +12,24 @@ function DoctorDetail() {
   const { doctor, ready } = useSelector((state) => state.doctors);
   const { id } = useParams();
 
-
   useEffect(() => {
     dispatch(
-      fetchDoctor({id}),
+      fetchDoctor({ id }),
     );
-  }, [dispatch]);
+  }, [dispatch, id]);
 
-    if (!ready) return <Loading />;
+  if (!ready) return <Loading />;
 
   return (
     <div className=" w-full text-center h-screen relative">
       {/* <h3 className="uppercase font-bold">Doctor Details</h3> */}
       <div className="flex flex-col">
-        
 
-          <Link to="/" className="lg:flex flex-col justify-end items-end hidden absolute bottom-[10%]">
-            <button className="w-auto  bg-[#96bf01] hover:bg-green-500 text-white rounded-r-full mt-10 py-3 pr-3 pl-10 font-bold">
-              <BiLeftArrow fill="white" />
-            </button>
-          </Link>
+        <Link to="/" className="lg:flex flex-col justify-end items-end hidden absolute bottom-[10%]">
+          <button type="button" className="w-auto  bg-[#96bf01] hover:bg-green-500 text-white rounded-r-full mt-10 py-3 pr-3 pl-10 font-bold">
+            <BiLeftArrow fill="white" />
+          </button>
+        </Link>
         <div className="lg:flex justify-around lg:mt-20 p-2">
           <div className="flex justify-center items-center lg:w-[500px]">
             <img
