@@ -46,3 +46,22 @@ The goal of this project is to display the ability to implement a full stack web
   - [Precious](https://github.com/preciousbetine)
   - [Ilyass](https://github.com/ilyassatlassi)
   - [Fahim-Khan](https://github.com/Fahim-Khan-P)
+
+  ## 🛠 Built With <a name="built-with"></a>
+
+- HTML.
+- Css.
+- javaScript.
+- React & redux
+
+### Tech Stack <a name="tech-stack"></a>
+
+<details>
+  <summary>Client</summary>
+  <ul>
+    <li><a href="https://www.w3schools.com/html/">HTML</a></li>
+    <li><a href="https://www.w3schools.com/css/">CSS</a></li>
+    <li><a href="https://www.javascript.com/">javaScript</a></li>
+    <li><a href="https://react.dev/">React</a></li>
+  </ul>
+</details>
