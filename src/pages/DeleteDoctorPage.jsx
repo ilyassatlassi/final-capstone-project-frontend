@@ -11,7 +11,7 @@ const DeleteDoctorPage = () => {
 
   const deleteDoc = (iden) => {
     setId(iden);
-    dispatch(deleteDoctor({ id }));
+    dispatch(deleteDoctor({ id: iden }));
   };
 
   useEffect(() => {
