@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.burger-button {
+  position: relative;
+  width: 30px;
+  height: 24px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 600;
+}
+
+.burger-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: #000;
+  transition: transform 0.3s ease;
+}
+
+.burger-line:nth-child(1) {
+  top: 0;
+}
+
+.burger-line:nth-child(2) {
+  top: 8px;
+}
+
+.burger-line:nth-child(3) {
+  top: 16px;
+}
+
+.burger-line.active:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.burger-line.active:nth-child(2) {
+  opacity: 0;
+}
+
+.burger-line.active:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.back-btn {
+  background-color: transparent;
+  width: fit-content;
+  border: none;
+  color: #97bf10;
+}
+
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+}
+
+.app-loader {
+  margin: auto;
+  border: 2px solid #eaf0f6;
+  border-radius: 50%;
+  border-top: 2px solid #97bf10;
+  width: 60px;
+  height: 60px;
+  animation: spinner 0.3s linear infinite;
+}
+
+@keyframes spinner {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+img:hover {
+  transition: 0.3s all;
+  transform: scale(1.02);
+}
