@@ -64,7 +64,7 @@ function CreateReservation() {
       ...ReservationData,
       doctorId,
     });
-    dispatch(addReservation(ReservationData));
+    dispatch(addReservation({ ...ReservationData, doctorId }));
   };
 
   const handleInputChange = (e) => {
