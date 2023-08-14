@@ -4,16 +4,18 @@ import { ToastContainer, toast, Slide } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 import { addDoctor } from '../redux/slices/doctors';
 import 'bulma/css/bulma.min.css';
+import classNames from 'classnames';
 
 function CreateDoctor() {
   const dispatch = useDispatch();
+  const [IsSelected, setIsSelected] = useState(false);
   const [doctorData, setDoctorData] = useState({
     image: '',
     name: '',
     specialization: '',
     consultationFee: '',
     hospital: '',
-    availability: true,
+    availability: IsSelected,
     description: '',
     facebook: '',
     twitter: '',
@@ -22,6 +24,7 @@ function CreateDoctor() {
 
   const { addSuccess, errors, ready } = useSelector((store) => store.doctors);
   const [loading, setLoading] = useState(false);
+ 
 
   const handleCreateNewDoctor = async (e) => {
     e.preventDefault();
@@ -42,7 +45,7 @@ function CreateDoctor() {
         specialization: '',
         consultationFee: '',
         hospital: '',
-        availability: true,
+        availability: IsSelected,
         description: '',
         facebook: '',
         twitter: '',
@@ -154,6 +157,9 @@ function CreateDoctor() {
               required
             />
           </label>
+          <div onClick={() => setIsSelected(!IsSelected)} className={classNames("flex bg-gray-500 rounded-full w-20 h-10",{"bg-green-600": IsSelected})}>
+            <span className={classNames("bg-white w-10 rounded-full h-10",{"ml-10": IsSelected})}></span> 
+          </div>
 
           <label className="" htmlFor="fb">
             Facebook:
